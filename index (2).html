@@ -1,0 +1,1055 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Прототип первых экранов сайта Ксении Богатовой — финансового директора и предпринимателя.">
+  <meta name="theme-color" content="#0d1a36">
+  <title>Ксения Богатова — финансовый директор · прототип</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --navy-950: #09132a;
+      --navy-900: #0d1a36;
+      --navy-850: #112142;
+      --navy-800: #172b52;
+      --ink: #16213a;
+      --ink-soft: #4e596e;
+      --cream: #f4f0e7;
+      --paper: #fffaf1;
+      --paper-deep: #ede5d7;
+      --gold: #b98330;
+      --gold-dark: #765019;
+      --gold-soft: #e8d5ad;
+      --white: #ffffff;
+      --line-light: rgba(255, 255, 255, 0.13);
+      --line-dark: rgba(13, 26, 54, 0.14);
+      --shadow: 0 28px 70px rgba(8, 18, 39, 0.16);
+      --shadow-soft: 0 14px 38px rgba(8, 18, 39, 0.09);
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --radius-md: 17px;
+      --container: 1660px;
+      --header-height: 82px;
+      --section-space: clamp(76px, 8vw, 142px);
+      --ease: cubic-bezier(.22, .8, .24, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--header-height) + 24px);
+      background: var(--cream);
+    }
+
+    body {
+      min-width: 320px;
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: Inter, Manrope, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      font-size: clamp(16px, 0.25vw + 15px, 19px);
+      line-height: 1.55;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    :focus-visible {
+      outline: 3px solid #e4af55;
+      outline-offset: 4px;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 1000;
+      padding: 11px 16px;
+      color: var(--navy-950);
+      background: var(--paper);
+      border-radius: 10px;
+      transform: translateY(-160%);
+      transition: transform 180ms ease;
+    }
+
+    .skip-link:focus { transform: translateY(0); }
+
+    .container {
+      width: min(var(--container), calc(100% - clamp(32px, 5vw, 112px)));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--header-height);
+      color: var(--white);
+      background: rgba(9, 19, 42, 0.9);
+      border-bottom: 1px solid var(--line-light);
+      backdrop-filter: blur(18px);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      height: 100%;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: grid;
+      flex: 0 0 auto;
+      place-items: center;
+      width: 42px;
+      aspect-ratio: 1;
+      color: var(--navy-950);
+      background: linear-gradient(145deg, #f3dfb9, #bd8632);
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 14px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.58);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: .05em;
+    }
+
+    .brand-copy {
+      display: grid;
+      min-width: 0;
+      line-height: 1.15;
+    }
+
+    .brand-name { font-size: 15px; font-weight: 700; }
+    .brand-role { margin-top: 4px; color: rgba(255,255,255,.66); font-size: 12px; }
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(18px, 2vw, 34px);
+      margin-left: auto;
+    }
+
+    .desktop-nav a {
+      color: rgba(255,255,255,.76);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 160ms ease;
+    }
+
+    .desktop-nav a:hover { color: var(--white); }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 18px;
+      color: var(--navy-950);
+      background: var(--gold-soft);
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .mobile-nav { display: none; position: relative; }
+    .mobile-nav summary { list-style: none; }
+    .mobile-nav summary::-webkit-details-marker { display: none; }
+
+    .menu-toggle {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      aspect-ratio: 1;
+      cursor: pointer;
+      border: 1px solid var(--line-light);
+      border-radius: 14px;
+      background: rgba(255,255,255,.06);
+    }
+
+    .menu-toggle::before {
+      content: "";
+      width: 20px;
+      height: 12px;
+      border-top: 2px solid var(--white);
+      border-bottom: 2px solid var(--white);
+    }
+
+    .mobile-menu {
+      position: absolute;
+      top: calc(100% + 12px);
+      right: 0;
+      display: grid;
+      min-width: min(290px, calc(100vw - 32px));
+      padding: 12px;
+      background: var(--navy-900);
+      border: 1px solid var(--line-light);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .mobile-menu a {
+      padding: 12px 13px;
+      color: rgba(255,255,255,.84);
+      border-radius: 10px;
+      font-weight: 650;
+      text-decoration: none;
+    }
+
+    .mobile-menu a:hover { background: rgba(255,255,255,.07); }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 82% 18%, rgba(185,131,48,.22), transparent 28%),
+        radial-gradient(circle at 14% 80%, rgba(48,84,145,.25), transparent 30%),
+        linear-gradient(145deg, var(--navy-950), var(--navy-850));
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: .42;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.82), transparent 92%);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.16fr) minmax(390px, .84fr);
+      gap: clamp(42px, 6vw, 106px);
+      align-items: center;
+      min-height: calc(100svh - var(--header-height));
+      padding-block: clamp(72px, 8vw, 136px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 24px;
+      color: #ebc77f;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1, h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 500;
+      letter-spacing: -.035em;
+      text-wrap: balance;
+    }
+
+    h1 {
+      max-width: 980px;
+      margin-bottom: 26px;
+      font-size: clamp(2.65rem, 4.8vw, 5.55rem);
+      line-height: .99;
+    }
+
+    .hero-lead {
+      max-width: 820px;
+      margin-bottom: 16px;
+      color: rgba(255,255,255,.84);
+      font-size: clamp(1.08rem, 1vw + .78rem, 1.42rem);
+      line-height: 1.55;
+    }
+
+    .hero-outcome {
+      max-width: 780px;
+      margin-bottom: 32px;
+      color: rgba(255,255,255,.68);
+      font-size: clamp(.98rem, .45vw + .84rem, 1.13rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 38px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 13px 22px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 780;
+      text-decoration: none;
+      transition: transform 180ms var(--ease), box-shadow 180ms var(--ease), background 180ms ease;
+    }
+
+    .button:hover { transform: translateY(-2px); }
+
+    .button-primary {
+      color: var(--navy-950);
+      background: linear-gradient(145deg, #f0d79f, #c48c38);
+      box-shadow: 0 12px 30px rgba(185,131,48,.2);
+    }
+
+    .button-secondary {
+      color: var(--white);
+      background: rgba(255,255,255,.055);
+      border-color: rgba(255,255,255,.22);
+    }
+
+    .proof-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 24px;
+      margin: 0;
+      padding: 0;
+      color: rgba(255,255,255,.72);
+      list-style: none;
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .proof-line li { display: inline-flex; align-items: center; gap: 9px; }
+    .proof-line li::before { content: ""; width: 5px; aspect-ratio: 1; background: var(--gold); border-radius: 50%; }
+
+    .hero-visual {
+      position: relative;
+      width: min(100%, 620px);
+      margin-left: auto;
+    }
+
+    .portrait-shell {
+      position: relative;
+      min-height: clamp(480px, 38vw, 660px);
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), transparent 38%),
+        linear-gradient(145deg, #d9d0c3, #9e9b9c);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 42px 100px rgba(0,0,0,.32);
+    }
+
+    .portrait-placeholder {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: rgba(13,26,54,.68);
+      text-align: center;
+    }
+
+    .portrait-placeholder strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--navy-900);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.65rem, 2.2vw, 2.4rem);
+      font-weight: 500;
+    }
+
+    .portrait-placeholder span { display: block; max-width: 240px; font-size: 14px; }
+
+    .decision-map {
+      position: absolute;
+      right: clamp(-22px, -2vw, -8px);
+      bottom: clamp(26px, 4vw, 54px);
+      width: min(360px, 74%);
+      padding: 20px;
+      color: var(--white);
+      background: rgba(9,19,42,.93);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .decision-map-label {
+      margin-bottom: 13px;
+      color: #e9c57d;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .decision-map ol {
+      display: grid;
+      gap: 9px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: map;
+    }
+
+    .decision-map li {
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr);
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,.82);
+      font-size: 13px;
+      font-weight: 650;
+      counter-increment: map;
+    }
+
+    .decision-map li::before {
+      content: counter(map);
+      display: grid;
+      place-items: center;
+      width: 28px;
+      aspect-ratio: 1;
+      color: var(--navy-950);
+      background: var(--gold-soft);
+      border-radius: 9px;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .section {
+      padding-block: var(--section-space);
+    }
+
+    .section-kicker {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 19px;
+      color: var(--gold-dark);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .section-kicker::after {
+      content: "";
+      width: 52px;
+      height: 1px;
+      background: currentColor;
+      opacity: .55;
+    }
+
+    .section-heading {
+      max-width: 1050px;
+      margin-bottom: 24px;
+      color: var(--navy-900);
+      font-size: clamp(2.25rem, 3.6vw, 4.6rem);
+      line-height: 1.04;
+    }
+
+    .section-intro {
+      max-width: 850px;
+      margin-bottom: clamp(36px, 5vw, 68px);
+      color: var(--ink-soft);
+      font-size: clamp(1.03rem, .55vw + .91rem, 1.25rem);
+    }
+
+    .symptoms { background: var(--cream); }
+
+    .symptom-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(14px, 1.5vw, 24px);
+    }
+
+    .symptom-card {
+      position: relative;
+      min-height: 300px;
+      padding: clamp(24px, 2.3vw, 38px);
+      overflow: hidden;
+      background: rgba(255,250,241,.72);
+      border: 1px solid var(--line-dark);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .symptom-card::before {
+      content: attr(data-index);
+      display: grid;
+      place-items: center;
+      width: 38px;
+      aspect-ratio: 1;
+      margin-bottom: 42px;
+      color: var(--gold-dark);
+      background: var(--gold-soft);
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .symptom-card h3 {
+      margin-bottom: 14px;
+      color: var(--navy-900);
+      font-size: clamp(1.12rem, .5vw + 1rem, 1.38rem);
+      line-height: 1.25;
+    }
+
+    .symptom-card p { margin: 0; color: var(--ink-soft); font-size: .93rem; }
+
+    .section-conclusion {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 17px;
+      align-items: start;
+      max-width: 970px;
+      margin: clamp(32px, 4vw, 54px) 0 0;
+      padding: 22px 24px;
+      color: var(--navy-900);
+      background: var(--gold-soft);
+      border-radius: var(--radius-md);
+      font-weight: 650;
+    }
+
+    .section-conclusion::before {
+      content: "→";
+      display: grid;
+      place-items: center;
+      width: 34px;
+      aspect-ratio: 1;
+      color: var(--white);
+      background: var(--navy-900);
+      border-radius: 50%;
+      font-weight: 900;
+    }
+
+    .section-conclusion p { margin: 3px 0 0; }
+
+    .method {
+      position: relative;
+      overflow: hidden;
+      color: var(--white);
+      background: var(--navy-900);
+    }
+
+    .method::before {
+      content: "";
+      position: absolute;
+      width: 720px;
+      aspect-ratio: 1;
+      right: -330px;
+      top: -280px;
+      border: 1px solid rgba(232,213,173,.17);
+      border-radius: 50%;
+      box-shadow: 0 0 0 80px rgba(232,213,173,.025), 0 0 0 160px rgba(232,213,173,.018);
+      pointer-events: none;
+    }
+
+    .method .section-kicker { color: #e9c57d; }
+    .method .section-heading { color: var(--white); }
+    .method .section-intro { color: rgba(255,255,255,.7); }
+
+    .method-flow {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: method;
+    }
+
+    .method-step {
+      min-height: 250px;
+      padding: clamp(24px, 2.5vw, 38px);
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: var(--radius-lg);
+      counter-increment: method;
+    }
+
+    .method-step::before {
+      content: "0" counter(method);
+      display: block;
+      margin-bottom: 38px;
+      color: #e7bd6b;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.1rem;
+    }
+
+    .method-step h3 {
+      margin-bottom: 12px;
+      color: var(--white);
+      font-size: clamp(1.16rem, .55vw + 1rem, 1.42rem);
+      line-height: 1.22;
+    }
+
+    .method-step p { margin: 0; color: rgba(255,255,255,.66); font-size: .92rem; }
+
+    .method-note {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin-top: 28px;
+      padding: 24px clamp(24px, 3vw, 42px);
+      color: var(--navy-950);
+      background: var(--gold-soft);
+      border-radius: var(--radius-lg);
+    }
+
+    .method-note strong {
+      max-width: 940px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.18rem, 1vw + .95rem, 1.65rem);
+      font-weight: 500;
+      line-height: 1.32;
+    }
+
+    .method-note span {
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      width: 50px;
+      aspect-ratio: 1;
+      color: var(--white);
+      background: var(--navy-900);
+      border-radius: 50%;
+      font-size: 22px;
+    }
+
+    .result { background: var(--paper); }
+
+    .result-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(340px, .95fr);
+      gap: clamp(36px, 6vw, 100px);
+      align-items: end;
+      margin-bottom: clamp(42px, 6vw, 80px);
+    }
+
+    .result-top .section-heading { margin-bottom: 0; }
+    .result-top .section-intro { margin: 0; }
+
+    .continuation {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      gap: clamp(18px, 2.5vw, 34px);
+      align-items: stretch;
+    }
+
+    .path-card {
+      padding: clamp(30px, 3.4vw, 54px);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .path-card.project {
+      color: var(--navy-900);
+      background: var(--cream);
+      border: 1px solid var(--line-dark);
+    }
+
+    .path-card.support {
+      color: var(--white);
+      background: linear-gradient(145deg, var(--navy-900), var(--navy-800));
+      border: 1px solid var(--navy-800);
+    }
+
+    .path-label {
+      margin-bottom: 18px;
+      color: var(--gold-dark);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .support .path-label { color: #e9c57d; }
+
+    .path-card h3 {
+      margin-bottom: 14px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.75rem, 2vw, 2.65rem);
+      font-weight: 500;
+      line-height: 1.08;
+    }
+
+    .path-card > p { margin-bottom: 28px; color: var(--ink-soft); }
+    .support > p { color: rgba(255,255,255,.67); }
+
+    .path-card ul {
+      display: grid;
+      gap: 13px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .path-card li {
+      display: grid;
+      grid-template-columns: 22px minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+      font-size: .93rem;
+    }
+
+    .path-card li::before {
+      content: "✓";
+      display: grid;
+      place-items: center;
+      width: 20px;
+      aspect-ratio: 1;
+      margin-top: 2px;
+      color: var(--gold-dark);
+      background: var(--gold-soft);
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .path-bridge {
+      display: grid;
+      place-items: center;
+      align-self: center;
+      width: 58px;
+      aspect-ratio: 1;
+      color: var(--white);
+      background: var(--gold);
+      border: 8px solid var(--paper);
+      border-radius: 50%;
+      box-shadow: var(--shadow-soft);
+      font-size: 23px;
+      font-weight: 900;
+    }
+
+    .result-band {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 22px;
+      align-items: center;
+      margin-top: clamp(34px, 5vw, 66px);
+      padding: clamp(24px, 3vw, 38px);
+      color: var(--navy-900);
+      background: #ead7af;
+      border-radius: var(--radius-lg);
+    }
+
+    .result-band strong {
+      display: grid;
+      place-items: center;
+      width: 54px;
+      aspect-ratio: 1;
+      color: var(--white);
+      background: var(--navy-900);
+      border-radius: 17px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+    }
+
+    .result-band p { margin: 0; font-size: clamp(1.03rem, .6vw + .9rem, 1.24rem); font-weight: 680; }
+
+    .prototype-footer {
+      padding-block: 28px;
+      color: rgba(255,255,255,.62);
+      background: var(--navy-950);
+      border-top: 1px solid var(--line-light);
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-inner strong { color: rgba(255,255,255,.86); }
+
+    @media (max-width: 1280px) {
+      .hero-inner { grid-template-columns: minmax(0, 1.1fr) minmax(350px, .9fr); gap: 50px; }
+      .symptom-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .symptom-card { min-height: 250px; }
+      .method-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 960px) {
+      :root { --header-height: 72px; }
+      .desktop-nav, .header-cta { display: none; }
+      .mobile-nav { display: block; }
+      .hero-inner { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+      .hero-copy { max-width: 850px; }
+      .hero-visual { width: min(100%, 650px); margin: 0; }
+      .portrait-shell { min-height: 520px; }
+      .result-top { grid-template-columns: minmax(0, 1fr); }
+      .result-top .section-heading { margin-bottom: 20px; }
+      .continuation { grid-template-columns: minmax(0, 1fr); }
+      .path-bridge { transform: rotate(90deg); }
+    }
+
+    @media (max-width: 680px) {
+      :root { --radius-xl: 25px; --radius-lg: 20px; }
+      .container { width: min(calc(100% - 32px), var(--container)); }
+      .brand-role { display: none; }
+      .hero-inner { padding-block: 64px 82px; }
+      h1 { font-size: clamp(2.42rem, 12.5vw, 3.7rem); }
+      .hero-actions { display: grid; }
+      .button { width: 100%; }
+      .proof-line { display: grid; gap: 9px; }
+      .portrait-shell { min-height: 430px; }
+      .decision-map { right: 14px; bottom: 14px; width: calc(100% - 28px); }
+      .symptom-grid, .method-flow { grid-template-columns: minmax(0, 1fr); }
+      .symptom-card, .method-step { min-height: 0; }
+      .symptom-card::before, .method-step::before { margin-bottom: 26px; }
+      .section-conclusion { grid-template-columns: minmax(0, 1fr); }
+      .method-note { align-items: flex-start; }
+      .method-note span { display: none; }
+      .result-band { grid-template-columns: minmax(0, 1fr); }
+      .footer-inner { display: grid; }
+    }
+
+    @media (min-width: 1900px) {
+      :root { --container: 1780px; }
+      .hero-copy { max-width: 1040px; }
+      .symptom-card { min-height: 330px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">К содержанию</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Ксения Богатова — на первый экран">
+        <span class="brand-mark" aria-hidden="true">КБ</span>
+        <span class="brand-copy">
+          <span class="brand-name">Ксения Богатова</span>
+          <span class="brand-role">Финансовый директор · Предприниматель</span>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Основная навигация">
+        <a href="#symptoms">Ситуации</a>
+        <a href="#method">Как работаю</a>
+        <a href="#result">Система и сопровождение</a>
+      </nav>
+
+      <a class="header-cta" href="#symptoms">Разобрать ситуацию</a>
+
+      <details class="mobile-nav">
+        <summary class="menu-toggle" aria-label="Открыть меню"></summary>
+        <nav class="mobile-menu" aria-label="Мобильная навигация">
+          <a href="#symptoms">Ситуации</a>
+          <a href="#method">Как работаю</a>
+          <a href="#result">Система и сопровождение</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Управленческий учёт · автоматизация · сопровождение</p>
+          <h1 id="hero-title">Финансовая система для решений по прибыли, деньгам и оборотному капиталу</h1>
+          <p class="hero-lead">Сначала разбираю симптомы и подтверждаю финансовую проблему. Затем выстраиваю правила, связываю данные и автоматизирую повторяемую работу.</p>
+          <p class="hero-outcome">Чтобы собственник быстрее получал точные данные и мог принимать решения, которые помогают растить прибыль, эффективнее использовать деньги и выстраивать обязательства без лишней нагрузки на бизнес.</p>
+
+          <div class="hero-actions" aria-label="Действия">
+            <a class="button button-primary" href="#symptoms">Разобрать свою ситуацию</a>
+            <a class="button button-secondary" href="#method">Посмотреть, как я работаю</a>
+          </div>
+
+          <ul class="proof-line" aria-label="Опыт">
+            <li>19 лет в финансах</li>
+            <li>Финансы, налоги и автоматизация</li>
+            <li>Основной опыт — торговля и производство</li>
+          </ul>
+        </div>
+
+        <div class="hero-visual" aria-label="Место для фотографии Ксении и схема подхода">
+          <div class="portrait-shell">
+            <div class="portrait-placeholder">
+              <div>
+                <strong>Фотография Ксении</strong>
+                <span>Подставим реальный портрет после согласования композиции</span>
+              </div>
+            </div>
+          </div>
+
+          <aside class="decision-map" aria-label="Логика работы">
+            <div class="decision-map-label">От учёта к прибыли</div>
+            <ol>
+              <li>Увидеть симптом</li>
+              <li>Подтвердить причину</li>
+              <li>Выбрать решение</li>
+              <li>Контролировать результат</li>
+            </ol>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section symptoms" id="symptoms" aria-labelledby="symptoms-title">
+      <div class="container">
+        <p class="section-kicker">01 · Ситуация бизнеса</p>
+        <h2 class="section-heading" id="symptoms-title">Сначала нужно понять, что именно мешает бизнесу получать результат</h2>
+        <p class="section-intro">Одного симптома недостаточно для решения. Нехватка денег может быть связана с запасами, дебиторской задолженностью, условиями оплаты, расходами или самой экономикой продаж.</p>
+
+        <div class="symptom-grid">
+          <article class="symptom-card" data-index="01">
+            <h3>Прибыль есть, но денег постоянно не хватает</h3>
+            <p>Нужно отделить результат продаж от денег, которые находятся в запасах, задолженности, авансах и будущих платежах.</p>
+          </article>
+
+          <article class="symptom-card" data-index="02">
+            <h3>Оборот растёт, а финансовая нагрузка усиливается</h3>
+            <p>Рост может потребовать больше закупок, оборотного капитала и кредитных денег раньше, чем бизнес получит оплату.</p>
+          </article>
+
+          <article class="symptom-card" data-index="03">
+            <h3>Отчёты появляются поздно или противоречат друг другу</h3>
+            <p>Пока сотрудники сверяют 1С, банк и таблицы, собственник уже принимает решения по устаревшим данным.</p>
+          </article>
+
+          <article class="symptom-card" data-index="04">
+            <h3>Запасы и обязательства растут быстрее возможностей бизнеса</h3>
+            <p>Деньги оказываются связаны в складе и расчётах, а сроки платежей не согласованы с поступлениями.</p>
+          </article>
+        </div>
+
+        <div class="section-conclusion">
+          <p>Симптом показывает, где искать. Но решение появляется только после проверки данных, причин и финансового механизма проблемы.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section method" id="method" aria-labelledby="method-title">
+      <div class="container">
+        <p class="section-kicker">02 · Логика работы</p>
+        <h2 class="section-heading" id="method-title">Сначала выявляю проблему. Только потом выбираю решение и автоматизацию</h2>
+        <p class="section-intro">Я не начинаю с автоматизации существующей таблицы или процесса. Сначала нужно подтвердить причину, понять финансовые последствия и определить, какое решение действительно требуется бизнесу.</p>
+
+        <ol class="method-flow">
+          <li class="method-step">
+            <h3>Симптом</h3>
+            <p>Что видит собственник: не хватает денег, падает маржа, растут запасы, отчёты расходятся или решение невозможно оценить.</p>
+          </li>
+          <li class="method-step">
+            <h3>Проверка фактов</h3>
+            <p>Какие данные подтверждают симптом? Где есть расхождения? Что изменилось и когда?</p>
+          </li>
+          <li class="method-step">
+            <h3>Финансовая проблема</h3>
+            <p>Определяю механизм: прибыль, денежный поток, оборотный капитал, обязательства, себестоимость или сочетание факторов.</p>
+          </li>
+          <li class="method-step">
+            <h3>Варианты решения</h3>
+            <p>Сравниваю действия и их последствия для прибыли, денег, налогов и рисков.</p>
+          </li>
+          <li class="method-step">
+            <h3>Система и автоматизация</h3>
+            <p>Фиксирую правила, связываю источники и автоматизирую повторяемую обработку данных.</p>
+          </li>
+          <li class="method-step">
+            <h3>Контроль результата</h3>
+            <p>Проверяем, дало ли решение ожидаемый эффект, и при необходимости корректируем действия.</p>
+          </li>
+        </ol>
+
+        <div class="method-note">
+          <strong>Автоматизация появляется не в начале, а после подтверждения проблемы и выбора финансовой логики решения.</strong>
+          <span aria-hidden="true">→</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section result" id="result" aria-labelledby="result-title">
+      <div class="container">
+        <p class="section-kicker">03 · Система в работе</p>
+
+        <div class="result-top">
+          <h2 class="section-heading" id="result-title">Система начинает работать — и становится основой для регулярных решений</h2>
+          <p class="section-intro">Внедрение даёт собственнику связанную финансовую картину. Дальше систему можно передать команде или использовать как основу постоянной работы с финансовым директором.</p>
+        </div>
+
+        <div class="continuation">
+          <article class="path-card project">
+            <p class="path-label">Этап 1 · Внедрение</p>
+            <h3>Работающая финансовая система</h3>
+            <p>Настраиваем основу, по которой можно регулярно видеть результат бизнеса.</p>
+            <ul>
+              <li>Единые правила расчётов</li>
+              <li>Связанные отчёты о прибыли, деньгах и балансе</li>
+              <li>Карта источников, сроков и ответственных</li>
+              <li>Контроль расхождений и ошибок</li>
+              <li>Регламент и обучение команды</li>
+            </ul>
+          </article>
+
+          <div class="path-bridge" aria-hidden="true">→</div>
+
+          <article class="path-card support">
+            <p class="path-label">Этап 2 · Сопровождение</p>
+            <h3>Регулярные решения собственника</h3>
+            <p>Используем систему не ради отчётов, а для управления финансовым результатом.</p>
+            <ul>
+              <li>Разбор причин изменения прибыли и денег</li>
+              <li>Контроль оборотного капитала и обязательств</li>
+              <li>План-факт и сценарии «что если»</li>
+              <li>Рекомендации по управленческим решениям</li>
+              <li>Проверка фактического результата решений</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="result-band">
+          <strong aria-hidden="true">Итог</strong>
+          <p>Ценность системы раскрывается не в самом отчёте, а в регулярных решениях и контроле их влияния на прибыль и деньги бизнеса.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="prototype-footer">
+    <div class="container footer-inner">
+      <strong>Прототип первых четырёх экранов</strong>
+      <span>Контакты, кейсы, услуги и экспресс-диагностика будут добавлены после согласования направления.</span>
+    </div>
+  </footer>
+</body>
+</html>
