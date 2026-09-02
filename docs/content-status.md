@@ -1,13 +1,16 @@
 # Статус материалов сайта v5.0
 
 Дата проверки: 2026-09-02
-Этап: 2
+Этап: 3
 
 | Материал | Статус | Файл | Проверен | Разрешён к публикации | Блокирует этап |
 |---|---|---|---|---|---|
 | Портрет desktop | PRESENT / VERIFIED | `assets/ksenia-bogatova-portrait-desktop.webp` | Да: файл и загрузка HTTP 200 | Да, согласно CURRENT | 1 |
 | Портрет mobile | PRESENT / VERIFIED | `assets/ksenia-bogatova-portrait-mobile.webp` | Да: файл и загрузка HTTP 200 | Да, согласно CURRENT | 1 |
 | Портрет JPG fallback | PRESENT / VERIFIED | `assets/ksenia-bogatova-portrait-fallback.jpg` | Да: файл и загрузка HTTP 200 | Да, согласно CURRENT | 1 |
+| Раннее доказательство — текстовая врезка | IMPLEMENTED / SAFE EDITION | `index.html`, `#questions` | Да: торговый контекст и утверждённая структура сверены с CURRENT; число B-007 исключено | Да, только в текущей редакции без числового срока | 3 |
+| Четыре вопроса собственника 01–04 | PRESENT / VERIFIED | `index.html`, `#questions` | Да: порядок и формулировки сверены с ТЗ v5.0 | Да | 3 |
+| Раннее доказательство — изображение | MISSING / NOT REQUIRED FOR STAGE 3 | — | Нет | Нет | Не блокирует 3; материалы главного кейса блокируют 5 / 9 |
 | Главный кейс — изображение 1 | MISSING | — | Нет | Нет | 5 / 9 |
 | Главный кейс — изображение 2 | MISSING | — | Нет | Нет | 5 / 9 |
 | Кейс аренды | MISSING | — | Нет | Нет | 5 / 9 |
