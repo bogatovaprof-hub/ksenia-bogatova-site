@@ -12,6 +12,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%230d1a36'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='Georgia,serif' font-size='23' font-weight='700' fill='%23fffaf1'%3E%D0%9A%D0%91%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="assets/css/site.css">
   <script src="assets/js/config.js" defer></script>
+  <script src="assets/js/analytics.js" defer></script>
   <script src="assets/js/site.js" defer></script>
 </head>
 <body>
@@ -84,8 +85,102 @@
       <span id="system"></span>
       <span id="cases"></span>
       <span id="formats"></span>
-      <span id="contact"></span>
     </div>
+
+    <section class="contact-fallback" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-card">
+        <div>
+          <p class="contact-kicker">Прямой контакт</p>
+          <h2 id="contact-title">Связаться с Ксенией</h2>
+          <p class="contact-copy">Если мини-бриф не открылся, используйте прямую ссылку на MAX или e-mail.</p>
+        </div>
+        <div class="contact-actions" aria-label="Способы связи">
+          <a class="button contact-link" data-direct-max hidden target="_blank" rel="noopener noreferrer">Открыть MAX</a>
+          <a class="button button-secondary contact-link" data-direct-email hidden>Написать по e-mail</a>
+          <p class="contact-unavailable" data-contact-unavailable data-dev-only>Рабочие MAX и e-mail ещё не добавлены в development-конфигурацию.</p>
+        </div>
+        <noscript>
+          <p class="noscript-note">JavaScript отключён. Прямые контакты станут доступны после подстановки подтверждённых MAX и e-mail.</p>
+        </noscript>
+      </div>
+    </section>
   </main>
+
+  <dialog class="qualifier-dialog" id="qualifier-dialog" aria-labelledby="qualifier-title" aria-describedby="qualifier-description qualifier-warning">
+    <div class="qualifier-dialog-inner">
+      <button class="dialog-close" type="button" data-close-qualifier aria-label="Закрыть мини-бриф">
+        <span aria-hidden="true">×</span>
+      </button>
+
+      <div data-qualifier-form-view>
+        <p class="dialog-kicker">Первый шаг</p>
+        <h2 id="qualifier-title" tabindex="-1">Коротко опишите бизнес и финансовый вопрос</h2>
+        <p id="qualifier-description">Для первого шага не нужны финансовые файлы и доступы. Достаточно общего описания ситуации.</p>
+
+        <form class="qualifier-form" id="qualifier-form" novalidate>
+          <div class="form-field">
+            <label for="business-model">Сфера и модель бизнеса <span class="required-mark">обязательное поле</span></label>
+            <textarea id="business-model" name="business" maxlength="250" rows="3" required placeholder="Например: производство и оптовая торговля, продажи через маркетплейсы" aria-describedby="business-hint business-error"></textarea>
+            <p class="field-hint" id="business-hint">До 250 символов.</p>
+            <p class="field-error" id="business-error" hidden>Опишите сферу и модель бизнеса.</p>
+          </div>
+
+          <div class="form-field">
+            <label for="financial-question">Какой вопрос или решение нужно разобрать <span class="required-mark">обязательное поле</span></label>
+            <textarea id="financial-question" name="question" maxlength="700" rows="4" required placeholder="Например: почему при росте продаж не увеличиваются свободные деньги" aria-describedby="question-hint question-error"></textarea>
+            <p class="field-hint" id="question-hint">До 700 символов.</p>
+            <p class="field-error" id="question-error" hidden>Сформулируйте вопрос или решение, которое нужно разобрать.</p>
+          </div>
+
+          <div class="form-field">
+            <label for="data-sources">Где сейчас находятся данные <span class="required-mark">обязательное поле</span></label>
+            <textarea id="data-sources" name="dataSources" maxlength="300" rows="3" required placeholder="Например: 1С, банки, Excel, CRM, кабинеты торговых площадок" aria-describedby="data-sources-hint data-sources-error"></textarea>
+            <p class="field-hint" id="data-sources-hint">До 300 символов.</p>
+            <p class="field-error" id="data-sources-error" hidden>Укажите, где сейчас находятся данные.</p>
+          </div>
+
+          <div class="form-field">
+            <label for="business-scale">Количество компаний, направлений или каналов <span class="optional-mark">необязательно</span></label>
+            <input id="business-scale" name="scale" type="text" maxlength="180">
+          </div>
+
+          <div class="form-field">
+            <label for="decision-deadline">Когда требуется принять решение <span class="optional-mark">необязательно</span></label>
+            <input id="decision-deadline" name="deadline" type="text" maxlength="120" placeholder="Например: в течение месяца">
+          </div>
+
+          <p class="qualifier-warning" id="qualifier-warning">Не указывайте пароли, реквизиты доступа, персональные данные сотрудников и не прикладывайте финансовые файлы. Для первого шага достаточно общего описания.</p>
+          <p class="form-status" data-form-status aria-live="polite"></p>
+
+          <div class="dialog-actions">
+            <button class="button" type="submit">Продолжить в MAX</button>
+            <button class="text-button" type="button" data-close-qualifier>Отменить</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="qualifier-confirmation" data-qualifier-confirmation hidden aria-live="polite">
+        <p class="dialog-kicker">Сообщение готово</p>
+        <h2 id="qualifier-confirmation-title" tabindex="-1">Проверьте подготовленное обращение</h2>
+        <p data-copy-status></p>
+
+        <div class="form-field">
+          <label for="message-preview">Подготовленное сообщение</label>
+          <textarea id="message-preview" data-message-preview rows="11" readonly></textarea>
+        </div>
+
+        <p class="development-warning" data-config-warning data-dev-only hidden>Внешний переход заблокирован: подтверждённые MAX и e-mail не добавлены в конфигурацию.</p>
+
+        <div class="confirmation-actions">
+          <a class="button" data-open-max hidden target="_blank" rel="noopener noreferrer">Открыть MAX</a>
+          <button class="button" type="button" data-max-unavailable disabled>Открыть MAX</button>
+          <button class="button button-secondary" type="button" data-copy-again>Скопировать ещё раз</button>
+          <a class="text-button confirmation-link" data-send-email hidden>Отправить по e-mail</a>
+          <button class="text-button" type="button" data-email-unavailable disabled>Отправить по e-mail</button>
+          <button class="text-button" type="button" data-edit-qualifier>Изменить ответы</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
 </body>
 </html>
