@@ -409,3 +409,22 @@ document.documentElement.classList.replace('no-js', 'js');
     form.elements.namedItem('business').focus();
   });
 })();
+
+(() => {
+  const questionDetails = [...document.querySelectorAll('.question-detail')];
+
+  questionDetails.forEach((currentDetail) => {
+    const summary = currentDetail.querySelector('summary');
+
+    summary.addEventListener('click', (event) => {
+      event.preventDefault();
+      const shouldOpen = !currentDetail.open;
+
+      questionDetails.forEach((otherDetail) => {
+        otherDetail.open = false;
+      });
+
+      currentDetail.open = shouldOpen;
+    });
+  });
+})();
