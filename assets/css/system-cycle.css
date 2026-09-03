@@ -1,0 +1,164 @@
+/* Interactive financial cycle. Styles are local to #system. */
+.system-section { --line: rgba(118, 80, 25, .22); color: var(--navy-900); background: #fcfaf5; border-block: 1px solid var(--line); }
+.system-section .system-heading { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .8fr); gap: 16px 56px; align-items: end; }
+.system-heading > .kicker { grid-column: 1 / -1; margin: 0; }
+.system-section .system-heading h2 { max-width: none; font-size: clamp(2rem, 2.8vw, 2.7rem); }
+.system-section .system-heading .section-intro { margin: 0; font-size: 16px; }
+.system-section .roles article > p:last-child { color: var(--ink-muted); }
+.system-section .system-result { border-color: var(--gold); }
+.system-cycle { margin-top: 38px; }
+.cycle-interactive { display: grid; grid-template-columns: minmax(0, 1.22fr) minmax(0, .85fr); gap: 44px; align-items: center; }
+.cycle-visual { min-width: 0; }
+.cycle-orbit { position: relative; width: 100%; max-width: 600px; aspect-ratio: 1; margin-inline: auto; }
+.cycle-orbit-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.cycle-orbit-guide { fill: none; stroke: #d9c5a1; stroke-width: 1; stroke-dasharray: 3 5; }
+.cycle-routes path { fill: none; stroke: var(--gold); stroke-width: 2.5; stroke-dasharray: 100; stroke-dashoffset: 100; stroke-linecap: round; }
+.cycle-direction { fill: none; stroke: #94713e; stroke-width: 1.5; }
+.cycle-signal { fill: #765019; transform-origin: 300px 300px; transition: transform 650ms ease; }
+.cycle-signal-halo { fill: #b98330; opacity: .18; }
+[data-playing="true"] .cycle-signal { transition: none; }
+.cycle-center { position: absolute; width: 47%; aspect-ratio: 1; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 28px; text-align: center; border: 1px solid #b98330; border-radius: 50%; background: #fffefb; box-shadow: 0 12px 42px rgba(96, 67, 25, .06); }
+.cycle-center-eyebrow { color: var(--gold-dark); font-size: 11px; line-height: 1.4; letter-spacing: .08em; text-transform: uppercase; }
+.cycle-center strong { font: 500 clamp(1.35rem, 2.1vw, 1.85rem)/1.12 Georgia, serif; letter-spacing: -.025em; }
+.cycle-center-count { color: var(--gold-dark); font-size: 12px; letter-spacing: .14em; }
+.cycle-node { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 10px; width: 144px; min-height: 44px; padding: 0; border: 0; color: var(--gold-dark); background: transparent; text-align: center; cursor: pointer; transform: translate(-50%, -38px); -webkit-tap-highlight-color: transparent; }
+.cycle-node-1 { top: 15.3333%; left: 50%; }
+.cycle-node-2 { top: 50%; left: 84.6667%; }
+.cycle-node-3 { top: 84.6667%; left: 50%; }
+.cycle-node-4 { top: 50%; left: 15.3333%; }
+.cycle-node-icon { position: relative; display: grid; place-items: center; width: 76px; height: 76px; border: 1.5px solid var(--gold); border-radius: 50%; background: #fffefb; box-shadow: 0 5px 18px rgba(96, 67, 25, .07); transition: background 160ms ease, box-shadow 160ms ease; }
+.cycle-node-icon svg { width: 30px; height: 30px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.cycle-node-icon rect { fill: #fffefb; }
+.cycle-node-number { position: absolute; top: -4px; right: -6px; display: grid; place-items: center; min-width: 25px; height: 25px; padding: 0 3px; border: 1px solid var(--line); border-radius: 50%; color: var(--gold-dark); background: #fcfaf5; font-size: 10px; font-weight: 700; }
+.cycle-node-label { max-width: 140px; font-size: 14px; font-weight: 600; line-height: 1.35; }
+.cycle-node-1 .cycle-node-label { position: absolute; bottom: calc(100% + 12px); }
+.cycle-node:hover .cycle-node-icon { box-shadow: 0 0 0 5px rgba(185, 131, 48, .12); }
+.cycle-node[aria-pressed="true"] { color: var(--navy-900); }
+.cycle-node[aria-pressed="true"] .cycle-node-icon { background: #efd8b2; border-width: 2px; box-shadow: 0 0 0 5px rgba(185, 131, 48, .1); }
+.cycle-node[aria-pressed="true"] .cycle-node-icon rect { fill: #efd8b2; }
+.cycle-node[aria-pressed="true"] .cycle-node-number { color: #fffaf1; background: #765019; }
+.cycle-node:focus-visible { outline-offset: 7px; border-radius: 12px; }
+.cycle-orbit-caption { display: flex; align-items: center; justify-content: center; gap: 12px; max-width: 50ch; margin: 12px auto 0; color: var(--ink-muted); font-size: 14px; line-height: 1.55; }
+.cycle-orbit-caption > span { flex-shrink: 0; color: var(--gold-dark); font: 30px/1 Georgia, serif; }
+.cycle-explanation { min-width: 0; padding: 30px 0 28px 32px; border-left: 1px solid var(--line); }
+.cycle-instruction { max-width: 40ch; margin: 0 0 18px; color: var(--ink-muted); font-size: 14px; line-height: 1.6; }
+.cycle-detail { margin-top: 26px; }
+.cycle-detail-count { margin: 0; color: var(--gold-dark); font-size: 12px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+.cycle-detail h3 { min-height: 2.35em; margin-top: 14px; font-size: clamp(1.8rem, 2.5vw, 2.25rem); line-height: 1.14; }
+.cycle-detail-body { min-height: 8em; margin-top: 20px; color: var(--ink-muted); font-size: 16px; line-height: 1.6; }
+.cycle-output { min-height: 136px; margin-top: 24px; padding: 18px 20px; background: #f2ebde; border-left: 2px solid var(--gold); }
+.cycle-output > span { color: var(--gold-dark); font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+.cycle-output p { margin-top: 7px; font-size: 16px; line-height: 1.55; }
+.cycle-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.cycle-controls button { min-height: 46px; line-height: 1.3; cursor: pointer; }
+.cycle-play { min-width: 174px; gap: 10px; padding-inline: 18px; }
+.cycle-play svg { width: 16px; height: 16px; fill: currentColor; }
+.cycle-pause-symbol { display: none; fill: none; stroke: currentColor; stroke-width: 3; }
+[data-playing="true"] .cycle-play-symbol { display: none; }
+[data-playing="true"] .cycle-pause-symbol { display: block; }
+.cycle-next, .cycle-reset { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 10px 16px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--navy-900); font-size: 14px; font-weight: 600; }
+.cycle-next:hover, .cycle-reset:hover { background: #f2ebde; }
+.cycle-reset { flex: 0 0 46px; width: 46px; padding: 0; font-size: 25px; font-weight: 400; }
+.cycle-progress { height: 2px; margin-top: 22px; background: #e4dac8; }
+.cycle-progress span { display: block; width: 100%; height: 100%; background: var(--gold); transform: scaleX(0); transform-origin: left; }
+.cycle-status { min-height: 3.2em; margin: 12px 0 0; color: var(--ink-muted); font-size: 12px; line-height: 1.6; }
+.cycle-fallback-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; padding: 0; margin: 0; list-style: none; }
+.cycle-fallback-list li { margin: 0; padding: 24px; background: #fffefb; border: 1px solid var(--line); }
+.cycle-fallback-list .step-number { color: var(--gold-dark); }
+.cycle-fallback-list h3 { margin-block: 18px; }
+.cycle-fallback-list [data-stage-body] { color: var(--ink-muted); }
+.cycle-fallback-list [data-stage-output] { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); }
+.cycle-fallback-return { margin-top: 24px; padding-left: 18px; border-left: 2px solid var(--gold); }
+
+@media (max-width: 1100px) {
+  .system-section .system-heading { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .system-section .system-heading .section-intro { max-width: 75ch; }
+  .cycle-interactive { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 20px; }
+  .cycle-explanation { padding-left: 24px; }
+  .cycle-center { gap: 12px; padding: 20px; }
+  .cycle-center strong { font-size: 24px; }
+  .cycle-node { width: 118px; transform: translate(-50%, -32px); }
+  .cycle-node-icon { width: 64px; height: 64px; }
+  .cycle-node-label { font-size: 13px; }
+}
+@media (max-width: 959px) {
+  .cycle-interactive { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .cycle-orbit { max-width: 540px; }
+  .cycle-node { width: 144px; }
+  .cycle-node-label { font-size: 14px; }
+  .cycle-center strong { font-size: 28px; }
+  .cycle-explanation { padding: 28px 0 0; border-left: 0; border-top: 1px solid var(--line); }
+  .cycle-instruction { max-width: none; margin-bottom: 24px; }
+  .cycle-detail h3 { min-height: 0; }
+  .cycle-detail-body { min-height: 6.4em; max-width: 68ch; }
+  .cycle-output { min-height: 100px; }
+}
+@media (max-width: 600px) {
+  .system-cycle { margin-top: 40px; }
+  .cycle-orbit { max-width: 430px; }
+  .cycle-node { width: 96px; gap: 8px; transform: translate(-50%, -26px); }
+  .cycle-node-icon { width: 52px; height: 52px; }
+  .cycle-node-icon svg { width: 25px; height: 25px; }
+  .cycle-node-number { min-width: 21px; height: 21px; top: -4px; right: -5px; font-size: 9px; }
+  .cycle-node-label { font-size: 12px; }
+  .cycle-node-1 .cycle-node-label { bottom: calc(100% + 8px); max-width: 140px; width: 140px; }
+  .cycle-center { width: 47%; padding: 14px; gap: 10px; }
+  .cycle-center-eyebrow { font-size: 9px; letter-spacing: .03em; }
+  .cycle-center strong { font-size: 20px; }
+  .cycle-center-count { font-size: 10px; }
+  .cycle-orbit-caption { margin-top: 38px; justify-content: flex-start; font-size: 14px; }
+  .cycle-detail h3 { font-size: 30px; min-height: 2.3em; }
+  .cycle-detail-body { min-height: 11.2em; }
+  .cycle-instruction { font-size: 16px; }
+  .cycle-output { min-height: 144px; }
+  .cycle-controls { gap: 10px; }
+  .cycle-controls .button { width: auto; }
+  .cycle-play { min-width: 0; flex: 1 1 100%; }
+  .cycle-next { flex: 1; font-size: 16px; }
+  .cycle-status { font-size: 13px; }
+  .cycle-fallback-list { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 380px) {
+  .cycle-node { width: 82px; }
+  .cycle-node-label { font-size: 11px; }
+  .cycle-center { gap: 8px; padding: 10px; }
+  .cycle-center-eyebrow { display: none; }
+  .cycle-center strong { font-size: 18px; }
+  .cycle-detail-body { min-height: 14.4em; }
+}
+/* Keep the complete interactive cycle in the desktop viewport. */
+@media (min-width: 960px) {
+  .system-section { padding-top: 28px; }
+  .system-section .system-heading { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 10px 40px; }
+  .system-section .system-heading h2 { font-size: 28px; line-height: 1.15; }
+  .system-section .system-heading .section-intro { max-width: none; font-size: 15px; line-height: 1.5; }
+  .system-cycle { margin-top: 28px; }
+  .cycle-interactive { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px; }
+  .cycle-orbit { max-width: clamp(350px, calc(100svh - 360px), 460px); }
+  .cycle-node { width: 118px; gap: 8px; transform: translate(-50%, -30px); }
+  .cycle-node-icon { width: 60px; height: 60px; }
+  .cycle-node-icon svg { width: 27px; height: 27px; }
+  .cycle-node-label { font-size: 13px; }
+  .cycle-node-1 .cycle-node-label { bottom: calc(100% + 8px); }
+  .cycle-center { gap: 10px; padding: 14px; }
+  .cycle-center-eyebrow { font-size: 10px; letter-spacing: .04em; }
+  .cycle-center strong { font-size: 22px; }
+  .cycle-center-count { font-size: 11px; }
+  .cycle-orbit-caption { margin-top: 24px; font-size: 13px; line-height: 1.45; }
+  .cycle-explanation { padding: 12px 0 12px 28px; }
+  .cycle-instruction { max-width: none; margin-bottom: 12px; font-size: 14px; line-height: 1.5; }
+  .cycle-progress { margin-top: 14px; }
+  .cycle-detail { margin-top: 16px; }
+  .cycle-detail h3 { min-height: 1.15em; margin-top: 10px; font-size: 28px; }
+  .cycle-detail-body { min-height: 4.5em; margin-top: 12px; font-size: 15px; line-height: 1.5; }
+  .cycle-output { min-height: 92px; margin-top: 14px; padding: 12px 16px; }
+  .cycle-output p { margin-top: 6px; font-size: 15px; line-height: 1.5; }
+  .cycle-status { position: absolute; width: 1px; height: 1px; min-height: 0; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .system-cycle *, .system-cycle *::before, .system-cycle *::after { animation: none !important; transition: none !important; }
+}
+@media (prefers-contrast: more) {
+  .system-section { --line: rgba(118, 80, 25, .6); }
+  .cycle-orbit-guide { stroke: #765019; }
+}

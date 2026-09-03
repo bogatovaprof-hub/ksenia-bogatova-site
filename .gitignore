@@ -1,0 +1,3 @@
+# Generated local checks, screenshots and temporary files.
+/artifacts/
+/tmp/

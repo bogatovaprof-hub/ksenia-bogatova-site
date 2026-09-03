@@ -1,430 +1,226 @@
-document.documentElement.classList.replace('no-js', 'js');
-
 (() => {
-  const dialog = document.querySelector('#qualifier-dialog');
-  const form = document.querySelector('#qualifier-form');
-  const formView = document.querySelector('[data-qualifier-form-view]');
-  const confirmationView = document.querySelector('[data-qualifier-confirmation]');
-  const dialogTitle = document.querySelector('#qualifier-title');
-  const confirmationTitle = document.querySelector('#qualifier-confirmation-title');
-  const messagePreview = document.querySelector('[data-message-preview]');
-  const copyStatus = document.querySelector('[data-copy-status]');
-  const formStatus = document.querySelector('[data-form-status]');
-  const maxLink = document.querySelector('[data-open-max]');
-  const maxUnavailable = document.querySelector('[data-max-unavailable]');
-  const emailLink = document.querySelector('[data-send-email]');
-  const emailUnavailable = document.querySelector('[data-email-unavailable]');
-  const configWarning = document.querySelector('[data-config-warning]');
-  const ctaLinks = document.querySelectorAll('[data-open-qualifier]');
-  const closeButtons = document.querySelectorAll('[data-close-qualifier]');
-  const copyAgainButton = document.querySelector('[data-copy-again]');
-  const editButton = document.querySelector('[data-edit-qualifier]');
-  const directMaxLink = document.querySelector('[data-direct-max]');
-  const directEmailLink = document.querySelector('[data-direct-email]');
-  const contactUnavailable = document.querySelector('[data-contact-unavailable]');
+  'use strict';
+  const config = window.SITE_CONFIG || {};
+  const configuredText = (value) => typeof value === 'string' && value.trim() && !/[\[\]{}]/.test(value) ? value.trim() : '';
 
-  const allowedCtaLocations = new Set(['header', 'hero', 'questions', 'formats', 'final']);
-  const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
-  const utmStorageKey = 'bogatova-cfo-utm';
-  const placeholderPattern = /^\{\{[^{}]+\}\}$/;
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const fieldRules = [
-    { name: 'business', maxLength: 250, errorId: 'business-error' },
-    { name: 'question', maxLength: 700, errorId: 'question-error' },
-    { name: 'dataSources', maxLength: 300, errorId: 'data-sources-error' }
-  ];
-
-  let returnFocusTo = null;
-  let activeCtaLocation = 'hero';
-  let qualifierStarted = false;
-  let qualifierCompleted = false;
-  let currentMessage = '';
-  let currentMode = 'copy';
-  let currentCopyStatus = 'not_attempted';
-
-  const getConfig = () => window.SITE_CONFIG || {};
-
-  const isConfiguredValue = (value) => {
-    const normalized = typeof value === 'string' ? value.trim() : '';
-    return Boolean(normalized) && !placeholderPattern.test(normalized);
-  };
-
-  const getSafeExternalUrl = (value) => {
-    if (!isConfiguredValue(value)) return null;
-
+  // Only confirmed HTTPS contact links are eligible for external navigation.
+  const safeMaxUrl = (value) => {
+    const text = configuredText(value);
+    if (!text) return '';
     try {
-      const url = new URL(value);
-      return url.protocol === 'https:' ? url.toString() : null;
-    } catch {
-      return null;
-    }
+      const url = new URL(text);
+      return url.protocol === 'https:' && !url.username && !url.password ? url.href : '';
+    } catch { return ''; }
   };
-
-  const getSafeEmail = (value) => {
-    if (!isConfiguredValue(value)) return null;
-    const normalized = value.trim();
-    return emailPattern.test(normalized) ? normalized : null;
+  const safeEmail = (value) => {
+    const text = configuredText(value);
+    return /^[a-zA-Z0-9.!#$&'*+\/=^_\x60{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9.-]*[a-zA-Z0-9])?\.[a-zA-Z]{2,}$/.test(text) ? text : '';
   };
+  const maxUrl = safeMaxUrl(config.maxUrl);
+  const email = safeEmail(config.email);
 
-  const track = (eventName, params = {}) => {
-    try {
-      window.siteAnalytics?.track(eventName, params);
-    } catch {
-      // Аналитика не должна блокировать основной сценарий.
-    }
+  const setExternal = (link, href) => {
+    link.href = href;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.hidden = false;
   };
-
-  const normalizeUserText = (value, maxLength) => String(value || '')
-    .replace(/\r\n?/g, '\n')
-    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F]/g, '')
-    .replace(/\t/g, ' ')
-    .trim()
-    .slice(0, maxLength);
-
-  const sanitizeUtmValue = (value) => String(value || '')
-    .replace(/[\u0000-\u001F\u007F-\u009F]/g, '')
-    .trim()
-    .slice(0, 100);
-
-  const readStoredUtm = () => {
-    try {
-      const stored = JSON.parse(sessionStorage.getItem(utmStorageKey) || '{}');
-      return utmKeys.reduce((result, key) => {
-        const value = sanitizeUtmValue(stored[key]);
-        if (value) result[key] = value;
-        return result;
-      }, {});
-    } catch {
-      return {};
-    }
-  };
-
-  const readUtm = () => {
-    const attribution = readStoredUtm();
-    const params = new URLSearchParams(window.location.search);
-    let hasQueryUtm = false;
-
-    utmKeys.forEach((key) => {
-      if (!params.has(key)) return;
-      hasQueryUtm = true;
-      const value = sanitizeUtmValue(params.get(key));
-      if (value) attribution[key] = value;
-      else delete attribution[key];
+  if (maxUrl) {
+    document.querySelectorAll('[data-contact-max]').forEach((link) => setExternal(link, maxUrl));
+    document.querySelectorAll('[data-max-placeholder]').forEach((element) => { element.hidden = true; });
+    document.querySelectorAll('[data-footer-max]').forEach((element) => {
+      const link = document.createElement('a');
+      link.textContent = 'Написать в MAX';
+      setExternal(link, maxUrl);
+      element.replaceChildren(link);
     });
+  }
+  if (email) {
+    const mailto = 'mailto:' + encodeURIComponent(email).replace('%40', '@');
+    document.querySelectorAll('[data-contact-email]').forEach((link) => { link.href = mailto; link.hidden = false; });
+    document.querySelectorAll('[data-email-placeholder]').forEach((element) => { element.hidden = true; });
+    document.querySelectorAll('[data-footer-email]').forEach((element) => {
+      const link = document.createElement('a');
+      link.textContent = email;
+      link.href = mailto;
+      element.replaceChildren(link);
+    });
+  }
+  document.querySelectorAll('[data-legal]').forEach((element) => {
+    const key = element.dataset.legal;
+    const value = key === 'email' ? email : configuredText(config[key]);
+    if (value) element.textContent = value;
+  });
 
-    if (hasQueryUtm) {
-      try {
-        sessionStorage.setItem(utmStorageKey, JSON.stringify(attribution));
-      } catch {
-        return {};
-      }
-    }
-
-    return attribution;
-  };
-
-  const attribution = readUtm();
-
-  const buildMessage = (values) => {
-    const lines = [
-      'Здравствуйте, Ксения. Хочу разобрать финансовую ситуацию.',
-      '',
-      `Сфера и модель бизнеса: ${values.business}`,
-      `Вопрос, который нужно решить: ${values.question}`,
-      `Данные сейчас находятся в: ${values.dataSources}`,
-      `Количество компаний / направлений / каналов: ${values.scale || 'не указано'}`,
-      `Когда нужен ответ: ${values.deadline || 'не указано'}`,
-      '',
-      'Источник: сайт bogatova-cfo.ru'
-    ];
-
-    const campaign = utmKeys
-      .filter((key) => attribution[key])
-      .map((key) => `${key}=${attribution[key]}`);
-
-    if (campaign.length) lines.push(`Кампания: ${campaign.join('; ')}`);
-    return lines.join('\n');
-  };
-
-  const buildMailto = (email, message = '') => {
-    const query = new URLSearchParams();
-    query.set('subject', 'Разбор финансовой ситуации — сайт');
-    if (message) query.set('body', message);
-    return `mailto:${email}?${query.toString()}`;
-  };
-
-  const buildPrefillUrl = (template, message) => {
-    if (!isConfiguredValue(template) || !template.includes('{message}')) return null;
-    const encodedMessage = encodeURIComponent(message);
-    return getSafeExternalUrl(template.split('{message}').join(encodedMessage));
-  };
-
-  const setDirectContacts = () => {
-    const config = getConfig();
-    const safeMaxUrl = getSafeExternalUrl(config.maxUrl);
-    const safeEmail = getSafeEmail(config.email);
-
-    if (safeMaxUrl && directMaxLink) {
-      directMaxLink.href = safeMaxUrl;
-      directMaxLink.hidden = false;
-    }
-
-    if (safeEmail && directEmailLink) {
-      directEmailLink.href = buildMailto(safeEmail);
-      directEmailLink.hidden = false;
-      directEmailLink.addEventListener('click', () => {
-        track('email_click', { location: 'contact', qualifier_completed: qualifierCompleted });
+  const menu = document.querySelector('.mobile-menu');
+  if (menu) {
+    const summary = menu.querySelector('summary');
+    summary.setAttribute('aria-expanded', String(menu.open));
+    const closeMenu = (returnFocus = false) => {
+      menu.open = false;
+      summary.setAttribute('aria-expanded', 'false');
+      if (returnFocus) summary.focus();
+    };
+    menu.addEventListener('toggle', () => summary.setAttribute('aria-expanded', String(menu.open)));
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        closeMenu();
+        const target = document.getElementById(link.hash.slice(1));
+        if (target) {
+          target.setAttribute('tabindex', '-1');
+          target.focus({ preventScroll: true });
+          target.addEventListener('blur', () => target.removeAttribute('tabindex'), { once: true });
+        }
       });
-    }
-
-    if (contactUnavailable) contactUnavailable.hidden = Boolean(safeMaxUrl || safeEmail);
-  };
-
-  const setFieldError = (field, errorId, hasError) => {
-    const error = document.querySelector(`#${errorId}`);
-    field.setAttribute('aria-invalid', hasError ? 'true' : 'false');
-    if (error) error.hidden = !hasError;
-  };
-
-  const validateForm = () => {
-    const values = {};
-    let firstInvalid = null;
-
-    fieldRules.forEach(({ name, maxLength, errorId }) => {
-      const field = form.elements.namedItem(name);
-      const value = normalizeUserText(field.value, maxLength);
-      values[name] = value;
-      const hasError = !value;
-      setFieldError(field, errorId, hasError);
-      if (hasError && !firstInvalid) firstInvalid = field;
     });
-
-    values.scale = normalizeUserText(form.elements.namedItem('scale').value, 180);
-    values.deadline = normalizeUserText(form.elements.namedItem('deadline').value, 120);
-
-    if (firstInvalid) {
-      formStatus.textContent = 'Проверьте обязательные поля.';
-      firstInvalid.focus();
-      return null;
-    }
-
-    formStatus.textContent = '';
-    return values;
-  };
-
-  const copyWithFallback = (message) => {
-    const temporaryField = document.createElement('textarea');
-    temporaryField.value = message;
-    temporaryField.setAttribute('readonly', '');
-    temporaryField.className = 'clipboard-fallback';
-    document.body.append(temporaryField);
-    temporaryField.select();
-
-    let copied = false;
-    try {
-      copied = document.execCommand('copy');
-    } catch {
-      copied = false;
-    }
-
-    temporaryField.remove();
-    return copied ? 'fallback' : 'manual';
-  };
-
-  const copyMessage = async (message) => {
-    if (window.isSecureContext && navigator.clipboard?.writeText) {
-      try {
-        await navigator.clipboard.writeText(message);
-        return 'clipboard';
-      } catch {
-        return copyWithFallback(message);
-      }
-    }
-
-    return copyWithFallback(message);
-  };
-
-  const configureConfirmationActions = (message) => {
-    const config = getConfig();
-    const safeMaxUrl = getSafeExternalUrl(config.maxUrl);
-    const prefillUrl = buildPrefillUrl(config.maxPrefillUrlTemplate, message);
-    const safeEmail = getSafeEmail(config.email);
-    const targetMaxUrl = prefillUrl || safeMaxUrl;
-
-    currentMode = prefillUrl ? 'prefill' : 'copy';
-
-    if (targetMaxUrl) {
-      maxLink.href = targetMaxUrl;
-      maxLink.hidden = false;
-      maxUnavailable.hidden = true;
-    } else {
-      maxLink.hidden = true;
-      maxLink.removeAttribute('href');
-      maxUnavailable.hidden = false;
-    }
-
-    if (safeEmail) {
-      emailLink.href = buildMailto(safeEmail, message);
-      emailLink.hidden = false;
-      emailUnavailable.hidden = true;
-    } else {
-      emailLink.hidden = true;
-      emailLink.removeAttribute('href');
-      emailUnavailable.hidden = false;
-    }
-
-    configWarning.hidden = Boolean(targetMaxUrl && safeEmail);
-    return { prefillUrl, hasUtm: Object.keys(attribution).length > 0 };
-  };
-
-  const showConfirmation = async (values) => {
-    currentMessage = buildMessage(values);
-    messagePreview.value = currentMessage;
-
-    const { prefillUrl, hasUtm } = configureConfirmationActions(currentMessage);
-    currentCopyStatus = prefillUrl ? 'not_needed' : await copyMessage(currentMessage);
-    confirmationView.dataset.prefillMode = currentMode;
-    confirmationView.dataset.copyResult = currentCopyStatus;
-
-    if (prefillUrl) {
-      copyStatus.textContent = 'Сообщение подготовлено. Откройте MAX — текст обращения будет добавлен автоматически.';
-    } else if (currentCopyStatus === 'clipboard' || currentCopyStatus === 'fallback') {
-      copyStatus.textContent = 'Текст сообщения подготовлен и скопирован. Откройте MAX и вставьте его в чат.';
-    } else {
-      copyStatus.textContent = 'Текст сообщения подготовлен. Скопируйте его из поля ниже, затем откройте MAX и вставьте в чат.';
-    }
-
-    formView.hidden = true;
-    confirmationView.hidden = false;
-    dialog.scrollTop = 0;
-    qualifierCompleted = true;
-    track('qualifier_complete', {
-      cta_location: activeCtaLocation,
-      has_optional_scale: Boolean(values.scale),
-      has_optional_deadline: Boolean(values.deadline),
-      has_utm: hasUtm
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menu.open) { event.preventDefault(); closeMenu(true); }
     });
-    confirmationTitle.focus();
+    document.addEventListener('click', (event) => { if (menu.open && !menu.contains(event.target)) closeMenu(); });
+    const desktop = window.matchMedia('(min-width: 960px)');
+    desktop.addEventListener('change', (event) => { if (event.matches) closeMenu(); });
+  }
 
-    if (currentCopyStatus === 'manual') {
-      messagePreview.focus();
-      messagePreview.select();
-    }
-  };
-
-  setDirectContacts();
-
-  if (!dialog || !form || typeof dialog.showModal !== 'function') return;
-
-  ctaLinks.forEach((cta) => {
-    cta.addEventListener('click', (event) => {
-      const requestedLocation = cta.dataset.ctaLocation;
-      activeCtaLocation = allowedCtaLocations.has(requestedLocation) ? requestedLocation : 'hero';
-      if (activeCtaLocation === 'hero') track('hero_cta_click', { cta_location: 'hero' });
-
-      event.preventDefault();
-      returnFocusTo = cta;
-      dialog.showModal();
-      document.body.classList.add('dialog-open');
-      dialog.scrollTop = 0;
-      track('qualifier_open', { cta_location: activeCtaLocation });
-      (confirmationView.hidden ? dialogTitle : confirmationTitle).focus();
+  const questions = [...document.querySelectorAll('.question-details')];
+  questions.forEach((current) => {
+    current.addEventListener('toggle', () => {
+      if (current.open) questions.forEach((other) => { if (other !== current) other.open = false; });
     });
   });
 
-  closeButtons.forEach((button) => button.addEventListener('click', () => dialog.close()));
+  const initSystemCycle = () => {
+    const cycle = document.querySelector('[data-system-cycle]');
+    if (!cycle) return;
+    const find = (name) => cycle.querySelector('[data-cycle-' + name + ']');
+    const source = [...cycle.querySelectorAll('[data-cycle-source]')].map((item) => ({
+      title: item.querySelector('h3')?.textContent,
+      body: item.querySelector('[data-stage-body]')?.textContent,
+      output: item.querySelector('[data-stage-output]')?.textContent
+    }));
+    const nodes = [...cycle.querySelectorAll('[data-cycle-step]')];
+    const routes = [...cycle.querySelectorAll('[data-cycle-route]')];
+    const parts = Object.fromEntries(['interactive', 'fallback', 'signal', 'center', 'center-count', 'count', 'title', 'body', 'output', 'play', 'play-label', 'next', 'reset', 'progress', 'status', 'instruction'].map((name) => [name, find(name)]));
+    // Only replace the readable four-step fallback after the whole widget is ready.
+    if (source.length !== 4 || nodes.length !== 4 || routes.length !== 4 || Object.values(parts).some((part) => !part) || source.some((step) => !step.title || !step.body || !step.output)) return;
 
-  dialog.addEventListener('click', (event) => {
-    if (event.target === dialog) dialog.close();
-  });
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const stageDuration = 4800;
+    let selected = 0;
+    let elapsed = 0;
+    let turns = 0;
+    let playing = false;
+    let completed = false;
+    let frame = 0;
+    let previousTime = null;
+    let observer;
 
-  dialog.addEventListener('cancel', (event) => {
-    event.preventDefault();
-    dialog.close();
-  });
-
-  dialog.addEventListener('keydown', (event) => {
-    if (event.key !== 'Escape') return;
-    event.preventDefault();
-    dialog.close();
-  });
-
-  dialog.addEventListener('close', () => {
-    document.body.classList.remove('dialog-open');
-    if (returnFocusTo) returnFocusTo.focus();
-    returnFocusTo = null;
-  });
-
-  form.addEventListener('input', (event) => {
-    if (typeof event.target.value === 'string' && event.target.maxLength > 0 && event.target.value.length > event.target.maxLength) {
-      event.target.value = event.target.value.slice(0, event.target.maxLength);
-    }
-
-    if (!qualifierStarted) {
-      qualifierStarted = true;
-      track('qualifier_start', { cta_location: activeCtaLocation });
-    }
-
-    const rule = fieldRules.find(({ name }) => name === event.target.name);
-    if (rule && normalizeUserText(event.target.value, rule.maxLength)) {
-      setFieldError(event.target, rule.errorId, false);
-    }
-  });
-
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const values = validateForm();
-    if (!values) return;
-    await showConfirmation(values);
-  });
-
-  copyAgainButton.addEventListener('click', async () => {
-    currentCopyStatus = await copyMessage(currentMessage);
-    confirmationView.dataset.copyResult = currentCopyStatus;
-    if (currentCopyStatus === 'clipboard' || currentCopyStatus === 'fallback') {
-      copyStatus.textContent = 'Текст сообщения скопирован ещё раз.';
-    } else {
-      copyStatus.textContent = 'Автоматическое копирование недоступно. Скопируйте текст из поля ниже.';
-      messagePreview.focus();
-      messagePreview.select();
-    }
-  });
-
-  maxLink.addEventListener('click', () => {
-    track('max_continue_click', {
-      prefill_mode: currentMode,
-      copy_status: currentCopyStatus,
-      cta_location: activeCtaLocation
-    });
-  });
-
-  emailLink.addEventListener('click', () => {
-    track('email_click', { location: 'qualifier', qualifier_completed: qualifierCompleted });
-  });
-
-  editButton.addEventListener('click', () => {
-    confirmationView.hidden = true;
-    formView.hidden = false;
-    dialog.scrollTop = 0;
-    form.elements.namedItem('business').focus();
-  });
-})();
-
-(() => {
-  const questionDetails = [...document.querySelectorAll('.question-detail')];
-
-  questionDetails.forEach((currentDetail) => {
-    const summary = currentDetail.querySelector('summary');
-
-    summary.addEventListener('click', (event) => {
-      event.preventDefault();
-      const shouldOpen = !currentDetail.open;
-
-      questionDetails.forEach((otherDetail) => {
-        otherDetail.open = false;
+    const draw = () => {
+      const fraction = Math.min(elapsed / stageDuration, 1);
+      const angle = turns * 360 + (selected + fraction) * 90;
+      parts.signal.style.transform = 'rotate(' + angle + 'deg)';
+      routes.forEach((route, index) => {
+        route.style.strokeDashoffset = String(completed || index < selected ? 0 : index === selected ? 100 * (1 - fraction) : 100);
       });
-
-      currentDetail.open = shouldOpen;
+      parts.progress.style.transform = 'scaleX(' + (completed ? 1 : (selected + fraction) / 4) + ')';
+    };
+    const render = () => {
+      const step = source[selected];
+      const number = String(selected + 1).padStart(2, '0');
+      nodes.forEach((node, index) => node.setAttribute('aria-pressed', String(index === selected)));
+      parts.center.textContent = completed ? 'Следующий цикл' : step.title;
+      parts['center-count'].textContent = completed ? 'Факт → новый вопрос' : number + ' / 04';
+      parts.count.textContent = completed ? 'Показ завершён' : 'Этап ' + number + ' из 04';
+      parts.title.textContent = completed ? 'Возвращаемся к вопросу' : step.title;
+      parts.body.textContent = completed ? 'Фактический результат становится данными следующего цикла.' : step.body;
+      parts.output.textContent = completed ? 'Уточняем вопрос собственника с учётом полученного результата.' : step.output;
+      cycle.dataset.playing = String(playing);
+      parts['play-label'].textContent = playing ? 'Пауза' : completed ? 'Показать ещё раз' : elapsed > 0 ? 'Продолжить' : 'Показать цикл';
+      parts.status.textContent = completed ? 'Цикл замкнулся: факт возвращается к вопросу собственника.' : (playing ? 'Показываем' : 'Выбран') + ' этап ' + (selected + 1) + ' из 4: ' + step.title + '.';
+    };
+    const pause = () => {
+      if (!playing) return;
+      playing = false;
+      cancelAnimationFrame(frame);
+      frame = 0;
+      previousTime = null;
+      render();
+      parts.status.textContent = 'На паузе. Этап ' + (selected + 1) + ' из 4: ' + source[selected].title + '.';
+    };
+    const select = (index) => {
+      pause();
+      if (index < selected) turns++;
+      selected = index;
+      elapsed = 0;
+      completed = false;
+      render();
+      draw();
+    };
+    const tick = (time) => {
+      if (!playing) return;
+      if (previousTime !== null) elapsed += time - previousTime;
+      previousTime = time;
+      while (elapsed >= stageDuration) {
+        elapsed -= stageDuration;
+        if (selected === 3) {
+          playing = false;
+          completed = true;
+          selected = 0;
+          elapsed = 0;
+          turns++;
+          frame = 0;
+          previousTime = null;
+          render();
+          draw();
+          return;
+        }
+        selected++;
+        render();
+      }
+      draw();
+      frame = requestAnimationFrame(tick);
+    };
+    parts.play.addEventListener('click', () => {
+      if (playing) { pause(); return; }
+      if (reducedMotion.matches || document.hidden) return;
+      if (completed) { selected = 0; elapsed = 0; completed = false; }
+      playing = true;
+      previousTime = null;
+      render();
+      draw();
+      frame = requestAnimationFrame(tick);
     });
-  });
+    parts.next.addEventListener('click', () => select(completed ? 0 : (selected + 1) % 4));
+    parts.reset.addEventListener('click', () => select(0));
+    nodes.forEach((node, index) => {
+      node.addEventListener('click', () => select(index));
+      node.addEventListener('keydown', (event) => {
+        const target = { ArrowRight: (index + 1) % 4, ArrowDown: (index + 1) % 4, ArrowLeft: (index + 3) % 4, ArrowUp: (index + 3) % 4, Home: 0, End: 3 }[event.key];
+        if (target === undefined) return;
+        event.preventDefault();
+        select(target);
+        nodes[target].focus({ preventScroll: true });
+      });
+    });
+    document.addEventListener('visibilitychange', () => { if (document.hidden) pause(); });
+    const updateMotion = () => {
+      pause();
+      observer?.disconnect();
+      parts.play.hidden = reducedMotion.matches;
+      parts.instruction.textContent = reducedMotion.matches ? 'Выберите этап на круге или нажмите «Дальше».' : 'Выберите этап на круге или запустите весь цикл.';
+      if (!reducedMotion.matches && 'IntersectionObserver' in window) {
+        observer = new IntersectionObserver((entries) => {
+          if (entries.some((entry) => !entry.isIntersecting)) pause();
+        });
+        observer.observe(parts.interactive);
+      }
+    };
+    render();
+    draw();
+    parts.interactive.hidden = false;
+    parts.fallback.hidden = true;
+    updateMotion();
+    reducedMotion.addEventListener('change', updateMotion);
+  };
+  initSystemCycle();
+  document.documentElement.classList.replace('no-js', 'js');
 })();

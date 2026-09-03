@@ -6,374 +6,305 @@
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#f4f0e7">
   <meta name="referrer" content="no-referrer">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'none'; object-src 'none'; media-src 'none'; worker-src 'none'; base-uri 'none'; form-action 'none'">
-  <meta name="description" content="Финансовый директор на аутсорсе: выстраивание и автоматизация управленческого учёта, финансовые модели и сопровождение решений собственника. Удалённо по России.">
-  <title>Финансовый директор на аутсорсе и управленческий учёт — Ксения Богатова</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%230d1a36'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='Georgia,serif' font-size='23' font-weight='700' fill='%23fffaf1'%3E%D0%9A%D0%91%3C/text%3E%3C/svg%3E">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; media-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; worker-src 'none'">
+  <meta name="description" content="Разработка и внедрение автоматизированного управленческого учёта для малого бизнеса. Сопровождение собственника как финансового директора. Удалённая работа по России.">
+  <title>Автоматизация управленческого учёта и финансовый директор — Ксения Богатова · прототип</title>
+  <link rel="icon" href="assets/img/monogram.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/system-visual.css">
+  <link rel="stylesheet" href="assets/css/system-cycle.css">
+  <link rel="stylesheet" href="assets/css/feedback.css">
   <script src="assets/js/config.js" defer></script>
-  <script src="assets/js/analytics.js" defer></script>
   <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/feedback.js" defer></script>
 </head>
-<body class="prototype-page">
+<body id="top">
   <a class="skip-link" href="#main">К содержанию</a>
-
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="#top" aria-label="Ксения Богатова — на первый экран">
-        <span class="brand-mark" aria-hidden="true">КБ</span>
-        <span class="brand-copy">
-          <span class="brand-name">Ксения Богатова</span>
-          <span class="brand-role">Финансовый директор на аутсорсе</span>
-        </span>
+        <span class="brand-copy"><span class="brand-name">Ксения Богатова</span><span class="brand-role">Финансовый директор на аутсорсе</span></span>
       </a>
-
-      <nav class="header-nav" aria-label="Основная навигация">
-        <a href="#system">Как работаю</a>
-        <a href="#cases">Практика</a>
-        <a href="#formats">Форматы</a>
+      <nav class="desktop-nav" aria-label="Основная навигация">
+        <a href="#questions">С чем помогу</a><a href="#system">Система</a><a href="#cases">Практика</a><a href="#formats">Форматы</a>
       </nav>
-
-      <a class="button header-cta cta-link" href="#contact" data-open-qualifier data-cta-location="header">
-        <span class="header-cta-label">Разобрать ситуацию</span>
-        <span class="header-cta-label-mobile">Разобрать</span>
-      </a>
+      <a class="button header-cta" href="#contact" data-open-qualifier><span class="header-cta-label">Разобрать мою ситуацию</span><span class="header-cta-label-mobile">Разобрать</span></a>
+      <details class="mobile-menu">
+        <summary aria-label="Меню разделов" aria-controls="mobile-navigation"><span class="menu-lines" aria-hidden="true"></span></summary>
+        <nav id="mobile-navigation" aria-label="Мобильная навигация">
+          <a href="#questions">С чем помогу</a><a href="#system">Система</a><a href="#cases">Практика</a><a href="#formats">Форматы</a><a href="#about">Почему Ксения</a><a href="#contact">Первый шаг</a>
+        </nav>
+      </details>
     </div>
   </header>
 
-  <main id="main">
-    <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="container hero-shell">
-        <p class="eyebrow">Финансовый директор на аутсорсе</p>
-
-        <div class="hero-main">
-          <div class="hero-copy">
-            <h1 id="hero-title">Финансовая система, с которой понятно, <span class="hero-title-accent">что&nbsp;делать дальше</span></h1>
-            <p class="hero-lead">Связываю прибыль, деньги, запасы и планы — чтобы решения опирались на актуальные данные.</p>
-            <p class="hero-qualifier">Данные уже есть в 1С, банках и таблицах, но не складываются в одну картину?</p>
-
-            <div class="hero-actions">
-              <a class="button cta-link" href="#contact" data-open-qualifier data-cta-location="hero">Разобрать финансовую ситуацию</a>
-              <p class="meeting-note">Бесплатная онлайн-встреча до 60 минут. Финансовые файлы на первом шаге не нужны.</p>
-            </div>
-          </div>
-
-          <div class="hero-visual">
-            <picture class="portrait-frame">
-              <source media="(max-width: 959px)" type="image/webp" srcset="assets/ksenia-bogatova-portrait-mobile.webp 640w" sizes="calc(100vw - 32px)">
-              <source type="image/webp" srcset="assets/ksenia-bogatova-portrait-desktop.webp 960w" sizes="(min-width: 1440px) 520px, 42vw">
-              <img src="assets/ksenia-bogatova-portrait-fallback.jpg" alt="Ксения Богатова, финансовый директор на аутсорсе" width="960" height="1200" decoding="async" fetchpriority="high">
-            </picture>
+  <main id="main" tabindex="-1">
+    <section class="owner-hero" aria-labelledby="hero-title">
+      <div class="container owner-hero-layout">
+        <div class="owner-hero-copy">
+          <p class="kicker">Разработка и внедрение автоматизированного управленческого учёта</p>
+          <h1 id="hero-title">Финансовая система, с которой понятно,<br> <span>что делать дальше</span></h1>
+          <p class="owner-lead">Что продолжать, что срочно начать, а от чего отказаться — чтобы бизнес больше зарабатывал и эффективнее использовал деньги.</p>
+          <div class="owner-hero-action">
+            <a class="button" href="#contact" data-open-qualifier>Разобрать мою ситуацию <span aria-hidden="true">↗</span></a>
+            <p>Первая встреча — бесплатно, до 60 минут.<br> После неё я подготовлю диагностическую карту 4–6 страниц и разберу её с вами на отдельной встрече.</p>
           </div>
         </div>
-
-        <div class="hero-proof">
-          <div class="facts" aria-label="Опыт Ксении Богатовой">
-            <div class="fact"><strong>19 лет</strong><span>в финансах</span></div>
-            <div class="fact"><strong>8 лет</strong><span>в Палате налоговых консультантов</span></div>
-            <div class="fact"><strong>4 года</strong><span>профессиональной разработки решений в 1С</span></div>
-          </div>
-          <p class="industry-note">Практический опыт — торговые и производственные компании, включая маркетплейсы.</p>
-        </div>
+        <figure class="owner-portrait">
+          <picture>
+            <source media="(max-width: 760px)" type="image/webp" srcset="assets/ksenia-bogatova-portrait-mobile.webp" width="640" height="800">
+            <source type="image/webp" srcset="assets/ksenia-bogatova-portrait-desktop.webp" width="960" height="1200">
+            <img src="assets/ksenia-bogatova-portrait-fallback.jpg" alt="Ксения Богатова, финансовый директор на аутсорсе" width="960" height="1200" decoding="async" fetchpriority="high">
+          </picture>
+          <figcaption><strong>Ксения Богатова</strong><span>Финансовый директор на аутсорсе</span></figcaption>
+        </figure>
+        <dl class="hero-facts">
+          <div><dt>19 лет</dt><dd>в финансах</dd></div>
+          <div><dt>8 лет</dt><dd>в Палате налоговых консультантов</dd></div>
+          <div><dt>4 года</dt><dd>профессиональной разработки решений в 1С</dd></div>
+        </dl>
       </div>
     </section>
 
-    <section class="questions-section prototype-section" id="questions" aria-labelledby="questions-title">
-      <div class="container prototype-section-inner">
-        <header class="section-heading questions-intro">
-          <p class="section-kicker">С чего начать</p>
-          <h2 id="questions-title">Что вы хотите понять прямо сейчас?</h2>
-          <p>Выберите вопрос, который ближе к вашей ситуации. Подробности можно раскрыть по одному.</p>
-        </header>
-
-        <div class="question-details-list">
-          <details class="question-detail" name="owner-question" open>
-            <summary>
-              <span class="detail-number" aria-hidden="true">01</span>
-              <span class="detail-title"><small>Деньги</small><strong>Почему прибыль есть, а свободных денег недостаточно?</strong></span>
-              <span class="details-mark" aria-hidden="true"></span>
-            </summary>
-            <p>Причина может быть в запасах, долгах клиентов, выплатах, инвестициях или условиях расчётов. Остаток на счёте не показывает весь механизм.</p>
-          </details>
-
-          <details class="question-detail" name="owner-question">
-            <summary>
-              <span class="detail-number" aria-hidden="true">02</span>
-              <span class="detail-title"><small>Прибыльность</small><strong>Что действительно приносит результат?</strong></span>
-              <span class="details-mark" aria-hidden="true"></span>
-            </summary>
-            <p>Общая выручка скрывает разницу между товарами, клиентами и каналами: комиссии, логистику, возвраты, хранение и постоянные затраты.</p>
-          </details>
-
-          <details class="question-detail" name="owner-question">
-            <summary>
-              <span class="detail-number" aria-hidden="true">03</span>
-              <span class="detail-title"><small>Решение</small><strong>Что изменится, если поднять цену, взять кредит или нанять сотрудника?</strong></span>
-              <span class="details-mark" aria-hidden="true"></span>
-            </summary>
-            <p>До действия можно сравнить сценарии, необходимый ресурс, критичные допущения и влияние на прибыль и деньги.</p>
-          </details>
-
-          <details class="question-detail" name="owner-question">
-            <summary>
-              <span class="detail-number" aria-hidden="true">04</span>
-              <span class="detail-title"><small>Контроль</small><strong>Как понять, что решение сработало?</strong></span>
-              <span class="details-mark" aria-hidden="true"></span>
-            </summary>
-            <p>Заранее определить ожидаемый результат, затем сопоставить план с фактом и использовать вывод в следующем решении.</p>
-          </details>
-        </div>
-
-        <article class="practice-brief" aria-labelledby="practice-title">
-          <div>
-            <p class="section-kicker">Из практики</p>
-            <h3 id="practice-title">Данные торговых площадок, 1С:УНФ, банков и товарного учёта связаны в одну модель</h3>
-          </div>
-          <div class="practice-brief-result">
-            <p>Модель использовалась для решений по досрочным выплатам и работе с возвратами.</p>
-            <a href="#case-trade">Посмотреть кейс <span aria-hidden="true">→</span></a>
-          </div>
-          <p class="practice-note">Данные обезличены. Числовые результаты и срок проекта не публикуются до контрольной проверки и разрешения.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="system-section prototype-section" id="system" aria-labelledby="system-title">
-      <div class="container prototype-section-inner">
-        <header class="section-heading section-heading-inverse">
-          <p class="section-kicker">Как строится работа</p>
-          <h2 id="system-title">От вопроса собственника — к проверенному решению</h2>
-          <p>Не начинаем с отчёта. Сначала определяем решение, для которого нужны данные.</p>
-        </header>
-
-        <ol class="process-flow">
-          <li>
-            <span class="process-number">01</span>
-            <div><h3>Сформулировать вопрос</h3><p>Что нужно решить и какие показатели на это влияют.</p></div>
-          </li>
-          <li>
-            <span class="process-number">02</span>
-            <div><h3>Связать источники</h3><p>1С, банки, таблицы и каналы продаж — по единым правилам.</p></div>
-          </li>
-          <li>
-            <span class="process-number">03</span>
-            <div><h3>Увидеть картину</h3><p>Прибыль, деньги, запасы и обязательства рассматриваются вместе.</p></div>
-          </li>
-          <li>
-            <span class="process-number">04</span>
-            <div><h3>Проверить решение</h3><p>Сравнить варианты, выбрать действие и проверить план-факт.</p></div>
-          </li>
-        </ol>
-
-        <p class="system-note">Повторяемые операции автоматизируются. Исключения, выводы и ответственность остаются под контролем человека.</p>
-      </div>
-    </section>
-
-    <section class="results-section prototype-section" id="results" aria-labelledby="results-title">
-      <div class="container prototype-section-inner">
+    <section class="section questions-section" id="questions" aria-labelledby="questions-title">
+      <div class="container">
         <header class="section-heading">
-          <p class="section-kicker">Результат для собственника</p>
-          <h2 id="results-title">Не больше отчётов — меньше неопределённости</h2>
+          <div><p class="kicker">Вопросы собственника</p><h2 id="questions-title">С какого вопроса начнём?</h2></div>
+          <p>Отдельная цифра фиксирует факт, но сама по себе не подсказывает, какое действие будет правильным. Поэтому я начинаю не с новой программы или отчёта, а с вопроса, на который вам нужен ответ.</p>
         </header>
-
-        <div class="decision-compare" role="list" aria-label="Изменение процесса принятия решений">
-          <article class="decision-row" role="listitem">
-            <p class="decision-moment">До решения</p>
-            <div><small>Сейчас</small><p>Выяснять, какой версии цифр доверять.</p></div>
-            <div><small>После настройки</small><p>Видеть одну согласованную картину.</p></div>
-          </article>
-          <article class="decision-row" role="listitem">
-            <p class="decision-moment">В момент решения</p>
-            <div><small>Сейчас</small><p>Опираться на общий итог, остаток и интуицию.</p></div>
-            <div><small>После настройки</small><p>Сравнивать варианты по прибыли, деньгам и требуемому ресурсу.</p></div>
-          </article>
-          <article class="decision-row" role="listitem">
-            <p class="decision-moment">После решения</p>
-            <div><small>Сейчас</small><p>Узнавать о последствиях, когда они уже проявились.</p></div>
-            <div><small>После настройки</small><p>Сопоставлять ожидаемый и фактический результат.</p></div>
-          </article>
-        </div>
-
-        <p class="section-conclusion">Собственник возвращается к своей роли: задать вопрос, выбрать действие и проверить результат.</p>
-      </div>
-    </section>
-
-    <section class="cases-section prototype-section" id="cases" aria-labelledby="cases-title">
-      <div class="container prototype-section-inner">
-        <header class="section-heading">
-          <p class="section-kicker">Практика</p>
-          <h2 id="cases-title">Как связанная картина помогает принять конкретное решение</h2>
-        </header>
-
-        <article class="case-feature" id="case-trade" aria-labelledby="case-trade-title">
-          <div class="case-feature-heading">
-            <p class="case-label">Торговая компания · обезличенный кейс</p>
-            <h3 id="case-trade-title">Увидеть экономику каналов, а не только общую выручку</h3>
-            <p class="case-question">Вопрос: как перестать пересобирать данные вручную для каждого решения?</p>
-          </div>
-
-          <div class="case-feature-body">
-            <div>
-              <p class="case-step-label">Связали</p>
-              <ul class="case-tags" aria-label="Связанные данные">
-                <li>продажи</li><li>возвраты</li><li>комиссии</li><li>логистику</li><li>выплаты</li><li>товарные данные</li><li>банковские движения</li>
-              </ul>
-            </div>
-            <div class="case-outcome">
-              <p class="case-step-label">Что стало возможным</p>
-              <p>Использовать единую модель для решений по досрочным выплатам и работе с возвратами.</p>
-            </div>
-          </div>
-
-          <p class="case-disclaimer">Показан только подтверждённый общий контекст. Срок, проценты и другие числовые результаты будут добавлены только после проверки исходных материалов и права публикации.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="formats-section prototype-section" id="formats" aria-labelledby="formats-title">
-      <div class="container prototype-section-inner">
-        <header class="section-heading formats-heading">
-          <p class="section-kicker">Форматы работы</p>
-          <h2 id="formats-title">Маршрут зависит от того, что уже есть и какое решение нужно принять</h2>
-          <p>Выбирать пакет заранее не требуется — границы задачи определяются после первого разбора.</p>
-        </header>
-
-        <div class="format-map">
-          <article class="format-primary">
-            <p class="format-state">Если устойчивой системы ещё нет</p>
-            <h3>Внедрение автоматизированного управленческого учёта</h3>
-            <p class="format-price">от <strong>150&nbsp;000&nbsp;₽</strong> за проект</p>
-            <p>Связать данные, согласовать правила, автоматизировать повторяемую часть и запустить первый регулярный цикл.</p>
-            <details>
-              <summary>Что предполагает нижняя граница</summary>
-              <ul>
-                <li>одна компания и ограниченное количество источников;</li>
-                <li>базовый согласованный набор отчётов;</li>
-                <li>обучение одного ответственного сотрудника;</li>
-                <li>один месяц сопровождения после запуска в объёме договора.</li>
-              </ul>
+        <div class="question-grid">
+          <article class="question-card">
+            <p class="card-label">01 · Прибыль и деньги</p>
+            <h3>Прибыль есть. Где деньги и сколько действительно свободно?</h3>
+            <p>Продажи, прибыль и остаток на счёте показывают разные стороны бизнеса. Их нужно связать с запасами, расчётами и обязательствами, прежде чем принимать решение о деньгах собственника или развитии.</p>
+            <details class="question-details">
+              <summary>Что будем выяснять<span class="details-mark" aria-hidden="true"></span></summary>
+              <div class="details-content">
+                <ul><li>Что уже заработано, что фактически поступило, а что ещё предстоит получить или оплатить.</li><li>Какая часть денег находится в запасах, задолженности, авансах и текущих расчётах.</li><li>Какой объём средств можно считать свободным с учётом обязательств и планов бизнеса.</li></ul>
+                <p class="note">Остаток на счёте и прибыль отвечают на разные вопросы. Вывод возможен только после проверки их взаимосвязи.</p>
+              </div>
             </details>
           </article>
-
-          <div class="format-alternatives">
-            <article class="format-row">
-              <p class="format-state">Если система уже есть</p>
-              <h3>Проверка пригодности → сопровождение CFO</h3>
-              <p class="format-price">от <strong>90&nbsp;000&nbsp;₽</strong> в месяц</p>
-            </article>
-            <article class="format-row">
-              <p class="format-state">Если нужно рассчитать одно решение</p>
-              <h3>Финансовая модель</h3>
-              <p class="format-price">от <strong>45&nbsp;000&nbsp;₽</strong></p>
-            </article>
-            <article class="format-row">
-              <p class="format-state">Если объём пока неясен</p>
-              <h3>Углублённый аудит</h3>
-              <p class="format-price"><strong>Стоимость после диагностической карты</strong></p>
-            </article>
-          </div>
+          <article class="question-card">
+            <p class="card-label">02 · Достоверность и контроль</p>
+            <h3>Цифры есть. Можно ли на них опираться?</h3>
+            <p>1С, банк, таблицы и отчёты команды могут отражать один и тот же бизнес по-разному. До принятия решения важно понять, по каким правилам считаются показатели и где требуется сверка.</p>
+            <details class="question-details">
+              <summary>Что будем выяснять<span class="details-mark" aria-hidden="true"></span></summary>
+              <div class="details-content">
+                <ul><li>Что именно включено в выручку, себестоимость, расходы и финансовый результат.</li><li>Как сопоставляются продажи, закупки, возвраты, списания и платежи.</li><li>Какие расчёты можно сохранить в действующей системе, а какие нужно регулярно проверять или автоматизировать.</li></ul>
+                <p class="note">Расхождение в цифрах — основание для проверки, а не готовый вывод об ошибке, перерасходе или злоупотреблении.</p>
+              </div>
+            </details>
+          </article>
+          <article class="question-card">
+            <p class="card-label">03 · Решения и развитие</p>
+            <h3>Что даст новое решение — до того, как вы вложите деньги?</h3>
+            <p>Изменение цены, оборудование, новый заказ, кредит, аренда или направление требуют разного объёма ресурсов и по-разному влияют на прибыль, движение денег и обязательства.</p>
+            <details class="question-details">
+              <summary>Что будем выяснять<span class="details-mark" aria-hidden="true"></span></summary>
+              <div class="details-content">
+                <ul><li>Какие условия и допущения сильнее всего влияют на результат.</li><li>Сколько денег потребуется, в какие сроки и за счёт каких источников.</li><li>Что измерять после запуска, чтобы сравнить расчёт с фактическим результатом.</li></ul>
+                <p class="note">Финансовая модель показывает сценарии и условия результата, но не гарантирует будущую прибыль.</p>
+              </div>
+            </details>
+          </article>
         </div>
-
-        <div class="formats-action">
-          <p>Цены — ориентир нижней границы. Состав, срок и стоимость фиксируются в договоре.</p>
-          <a class="button cta-link" href="#contact" data-open-qualifier data-cta-location="formats">Разобрать финансовую ситуацию</a>
+        <div class="section-conclusion">
+          <p>Это примеры вопросов. Можно прийти со своей ситуацией — её причины и подходящий формат работы определяются после знакомства с бизнесом.</p>
+          <p>Чтобы ответить на такие вопросы, недостаточно одной цифры или ещё одного отчёта. Нужна система, которая связывает данные, регулярно обновляет расчёты и позволяет проверить решение по факту.</p>
         </div>
+        <div class="section-actions"><a class="button" href="#contact" data-open-qualifier>Разобрать мою ситуацию</a><a class="text-link" href="#system">Как из данных появляется решение <span aria-hidden="true">→</span></a></div>
       </div>
     </section>
 
-    <section class="about-section prototype-section" id="about" aria-labelledby="about-title">
-      <div class="container prototype-section-inner about-layout">
-        <div>
-          <header class="section-heading">
-            <p class="section-kicker">Почему Ксения</p>
-            <h2 id="about-title">Финансы, налоги и автоматизация — в одной работе</h2>
-          </header>
-
-          <div class="competence-list">
-            <article><span>01</span><div><h3>Финансовая логика</h3><p>Определить показатели и связи, которые отвечают на вопрос собственника.</p></div></article>
-            <article><span>02</span><div><h3>Налоговые последствия</h3><p>Учитывать влияние вариантов на денежный поток и показывать риски.</p></div></article>
-            <article><span>03</span><div><h3>Техническая реализация</h3><p>Перевести согласованные правила в работающие решения в 1С и других инструментах.</p></div></article>
+    <section class="section system-section" id="system" aria-labelledby="system-title">
+      <div class="container">
+        <header class="system-heading">
+          <p class="kicker">Как работает финансовая система</p>
+          <h2 id="system-title">Управленческий учёт задаёт правила.<br>Автоматизация обновляет данные.<br>Собственник выбирает действие.</h2>
+          <p class="section-intro">Сначала я определяю, какой ответ нужен собственнику и как должны рассчитываться показатели. Затем автоматизирую повторяемую обработку данных и использую полученную картину для анализа причин и вариантов решения.</p>
+        </header>
+        <div class="system-cycle" data-system-cycle>
+          <div class="cycle-interactive" data-cycle-interactive hidden>
+            <div class="cycle-visual">
+              <div class="cycle-orbit" role="group" aria-label="Выберите этап финансовой системы">
+                <svg class="cycle-orbit-lines" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
+                  <circle class="cycle-orbit-guide" cx="300" cy="300" r="208"/>
+                  <g class="cycle-routes">
+                    <path data-cycle-route d="M300 92 A208 208 0 0 1 508 300" pathLength="100"/>
+                    <path data-cycle-route d="M508 300 A208 208 0 0 1 300 508" pathLength="100"/>
+                    <path data-cycle-route d="M300 508 A208 208 0 0 1 92 300" pathLength="100"/>
+                    <path data-cycle-route d="M92 300 A208 208 0 0 1 300 92" pathLength="100"/>
+                  </g>
+                  <g class="cycle-direction"><path d="M294 86 L306 92 L294 98" transform="rotate(45 300 300)"/><path d="M294 86 L306 92 L294 98" transform="rotate(135 300 300)"/><path d="M294 86 L306 92 L294 98" transform="rotate(225 300 300)"/><path d="M294 86 L306 92 L294 98" transform="rotate(315 300 300)"/></g>
+                  <g class="cycle-signal" data-cycle-signal><circle class="cycle-signal-halo" cx="300" cy="92" r="13"/><circle cx="300" cy="92" r="5"/></g>
+                </svg>
+                <div class="cycle-center" aria-hidden="true"><span class="cycle-center-eyebrow">Система для решений</span><strong data-cycle-center>Вопрос собственника</strong><span class="cycle-center-count" data-cycle-center-count>01 / 04</span></div>
+                <button class="cycle-node cycle-node-1" type="button" data-cycle-step="0" aria-pressed="true" aria-controls="cycle-detail" aria-label="Этап 1. Вопрос собственника">
+                  <span class="cycle-node-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 5h20v17H15l-7 5v-5H6z"/><path d="M13 11a3 3 0 0 1 6 0c0 2-3 2-3 5M16 19v.2"/></svg><span class="cycle-node-number">01</span></span><span class="cycle-node-label">Вопрос собственника</span>
+                </button>
+                <button class="cycle-node cycle-node-2" type="button" data-cycle-step="1" aria-pressed="false" aria-controls="cycle-detail" aria-label="Этап 2. Правила и автоматизация">
+                  <span class="cycle-node-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 8h22M5 16h22M5 24h22"/><rect x="10" y="5" width="4" height="6" rx="1"/><rect x="20" y="13" width="4" height="6" rx="1"/><rect x="8" y="21" width="4" height="6" rx="1"/></svg><span class="cycle-node-number">02</span></span><span class="cycle-node-label">Правила и автоматизация</span>
+                </button>
+                <button class="cycle-node cycle-node-3" type="button" data-cycle-step="2" aria-pressed="false" aria-controls="cycle-detail" aria-label="Этап 3. Финансовая картина">
+                  <span class="cycle-node-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="5" width="22" height="22" rx="2"/><path d="M5 12h22M14 12v15M18 17h5M18 22h5M9 17h1M9 22h1"/></svg><span class="cycle-node-number">03</span></span><span class="cycle-node-label">Финансовая картина</span>
+                </button>
+                <button class="cycle-node cycle-node-4" type="button" data-cycle-step="3" aria-pressed="false" aria-controls="cycle-detail" aria-label="Этап 4. Решение и план-факт">
+                  <span class="cycle-node-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M26 11a11 11 0 1 0 1 9M26 4v7h-7M11 16l4 4 7-8"/></svg><span class="cycle-node-number">04</span></span><span class="cycle-node-label">Решение и план-факт</span>
+                </button>
+              </div>
+              <p class="cycle-orbit-caption"><span aria-hidden="true">↻</span> Факт возвращается в систему — начинается следующий цикл.</p>
+            </div>
+            <div class="cycle-explanation">
+              <p class="cycle-instruction" data-cycle-instruction>Выберите этап на круге или запустите весь цикл.</p>
+              <div class="cycle-controls">
+                <button class="button cycle-play" type="button" data-cycle-play><svg viewBox="0 0 20 20" aria-hidden="true"><path class="cycle-play-symbol" d="M5 3l11 7-11 7z"/><path class="cycle-pause-symbol" d="M6 4v12M14 4v12"/></svg><span data-cycle-play-label>Показать цикл</span></button>
+                <button class="cycle-next" type="button" data-cycle-next>Дальше <span aria-hidden="true">→</span></button>
+                <button class="cycle-reset" type="button" data-cycle-reset aria-label="Начать сначала"><span aria-hidden="true">↺</span></button>
+              </div>
+              <div class="cycle-progress" aria-hidden="true"><span data-cycle-progress></span></div>
+              <div class="cycle-detail" id="cycle-detail" role="region" aria-labelledby="cycle-detail-title">
+                <p class="cycle-detail-count" data-cycle-count>Этап 01 из 04</p>
+                <h3 id="cycle-detail-title" data-cycle-title>Вопрос собственника</h3>
+                <p class="cycle-detail-body" data-cycle-body></p>
+                <div class="cycle-output"><span>На выходе</span><p data-cycle-output></p></div>
+              </div>
+              <p class="cycle-status" data-cycle-status role="status" aria-live="polite" aria-atomic="true">Выбран этап 1 из 4: Вопрос собственника.</p>
+            </div>
+          </div>
+          <div class="cycle-fallback" data-cycle-fallback>
+            <ol class="cycle-fallback-list">
+              <li data-cycle-source><span class="step-number">01</span><h3>Вопрос собственника</h3><p data-stage-body>Как формируется прибыль? Где находятся деньги? Можно ли доверять цифрам? Что даст новое решение?</p><p data-stage-output>Вопрос, на который должна ответить финансовая система.</p></li>
+              <li data-cycle-source><span class="step-number">02</span><h3>Правила и автоматизация</h3><p data-stage-body>Определяю источники, аналитику и правила расчёта. Автоматизирую согласованную повторяемую часть: сбор, сопоставление, сверку и пересчёт данных.</p><p data-stage-output>Согласованные правила и регулярно обновляемые расчёты.</p></li>
+              <li data-cycle-source><span class="step-number">03</span><h3>Финансовая картина</h3><p data-stage-body>Регулярно обновляются данные о прибыли, движении денег, запасах, расчётах и обязательствах.</p><p data-stage-output>Связанная картина прибыли, денег и обязательств.</p></li>
+              <li data-cycle-source><span class="step-number">04</span><h3>Решение и план-факт</h3><p data-stage-body>Сравниваем варианты. Собственник выбирает действие. После реализации ожидаемый результат сопоставляется с фактом.</p><p data-stage-output>Сопоставление ожидаемого результата с фактом — данные для следующего цикла.</p></li>
+            </ol>
+            <p class="cycle-fallback-return">Фактический результат становится данными следующего цикла.</p>
           </div>
         </div>
+        <div class="roles">
+          <article><p class="card-label">Финансовый директор</p><h3>Финансовая основа решения</h3><p>Определяю финансовые правила, проверяю данные, автоматизирую повторяемые расчёты, разбираю причины и сравниваю варианты.</p></article>
+          <article><p class="card-label">Команда клиента</p><h3>Данные и действия</h3><p>Ведёт согласованные данные, поясняет реальные операции и выполняет закреплённые действия.</p></article>
+          <article><p class="card-label">Собственник</p><h3>Приоритеты и выбор</h3><p>Ставит вопрос, определяет приоритеты, выбирает действие и направление.</p></article>
+        </div>
+        <p class="system-result">Система должна регулярно отвечать на вопросы собственника, а не требовать ежемесячной пересборки отчётов с нуля.</p>
+      </div>
+    </section>
 
-        <aside class="about-proof" aria-label="Опыт и условия работы">
-          <p><strong>19 лет</strong><span>в финансах</span></p>
-          <p><strong>8 лет</strong><span>в Палате налоговых консультантов</span></p>
-          <p><strong>4 года</strong><span>профессиональной разработки решений в 1С</span></p>
-          <div class="confidentiality-note">
-            <h3>Конфиденциальность</h3>
-            <p>Работа по договору. При необходимости — NDA. Клиентские данные не публикуются без разрешения.</p>
-          </div>
+    <section class="section cases-section" id="cases" aria-labelledby="cases-title">
+      <div class="container">
+        <aside class="accounting-note" aria-labelledby="accounting-title">
+          <h3 id="accounting-title">Почему бухгалтерского учёта бывает недостаточно</h3>
+          <div><p>Налоговый и управленческий учёт могут использовать часть одних и тех же данных, но отвечают на разные вопросы.</p><p>В одном из торговых проектов значимая часть управленческой реализации канала приходилась на баллы торговой площадки. В налоговую базу они не входили, но участвовали в расчёте вознаграждения и логистики. Поэтому налоговые данные не показывали собственнику полную экономику канала.</p></div>
         </aside>
+        <header class="section-heading">
+          <div><p class="kicker">Из практики</p><h2 id="cases-title">Как финансовая система используется в конкретных решениях бизнеса</h2></div>
+        </header>
+        <article class="case-panel">
+          <div class="case-header"><p class="card-label">Торговая компания</p><h3>Как автоматизированный учёт помог связать экономику торгового канала с конкретными решениями</h3></div>
+          <div class="case-layout">
+            <div>
+              <p class="case-caption">Ситуация</p><p>Данные торговых площадок, 1С:УНФ, банков и товарного учёта находились в разных источниках. Единой картины по продажам, возвратам, комиссиям, запасам, прибыли и деньгам не было.</p>
+              <details class="case-details"><summary>Что сделано и для каких решений<span class="details-mark" aria-hidden="true"></span></summary><div class="details-content"><p>Связаны продажи, выплаты, возвраты, комиссии, логистика, хранение, товарные данные и банковские движения. Согласованы правила управленческого учёта и автоматизирована повторяемая обработка в 1С:УНФ.</p><ul><li>Досрочные выплаты торговой площадки.</li><li>Хранение и вывоз возвратов.</li><li>Прибыльность товарных позиций.</li><li>Регулярный контроль экономики канала.</li></ul></div></details>
+            </div>
+            <div class="case-evidence">
+              <div class="case-metrics"><div><span class="status-label">Факт</span><p class="metric">Два месяца</p><p>Внедрение в этом проекте.</p></div><div><span class="status-label">Факт</span><p class="metric">Около 1,3%</p><p>Сокращение расходов по двум принятым решениям — от реализации основного канала.</p></div></div>
+              <div class="evidence-placeholder"><span class="placeholder-rule" aria-hidden="true"></span><p>Здесь будет обезличенный фрагмент модели / системы</p></div>
+            </div>
+          </div>
+        </article>
+        <article class="case-panel">
+          <div class="case-header"><p class="card-label">Коммерческая аренда</p><h3>Как примерно за неделю рассчитали условия аренды и заключили договор на рассчитанной ставке</h3></div>
+          <div class="case-layout">
+            <div>
+              <p class="case-caption">Ситуация</p><p>Помещение требовало ремонта, арендатора и дохода ещё не было. Нужно было определить ставку, которая учитывает расходы, налоги, содержание объекта и движение денег по срокам.</p>
+              <details class="case-details"><summary>Что сделано<span class="details-mark" aria-hidden="true"></span></summary><div class="details-content"><ul><li>Рассчитана минимальная ставка.</li><li>Подготовлены сценарии.</li><li>Учтены ремонт, налоги, зарплата и сроки платежей.</li><li>Подготовлены экономические условия договора.</li></ul></div></details>
+            </div>
+            <div class="case-evidence">
+              <div class="case-metrics"><div><span class="status-label">Факт</span><p class="metric">Примерно неделя</p><p>До заключения договора. В договор вошла рассчитанная в модели ставка.</p></div><div><span class="status-label">Факт</span><p class="metric">Около 25%</p><p>Стоимость арендных каникул от средств, которые потребовались бы собственнику для самостоятельного ремонта.</p></div></div>
+              <div class="evidence-placeholder"><span class="placeholder-rule" aria-hidden="true"></span><p>Здесь будет обезличенный фрагмент модели / системы</p></div>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
-    <section class="contact-section prototype-section" id="contact" aria-labelledby="contact-title">
-      <div class="container prototype-section-inner">
-        <div class="first-step-layout">
-          <header class="section-heading">
-            <p class="section-kicker">Первый шаг</p>
-            <h2 id="contact-title">Сначала определим вопрос — затем подходящий маршрут</h2>
-          </header>
-
-          <ol class="first-step-list">
-            <li><span>1</span><p><strong>Короткое сообщение</strong> о бизнесе, данных и решении.</p></li>
-            <li><span>2</span><p><strong>Бесплатная онлайн-встреча</strong> до 60 минут.</p></li>
-            <li><span>3</span><p><strong>Диагностическая карта</strong> и обсуждение следующего шага.</p></li>
-          </ol>
+    <section class="section ruled-section" id="formats" aria-labelledby="formats-title">
+      <div class="container">
+        <header class="section-heading">
+          <div><p class="kicker">Форматы работы</p><h2 id="formats-title">От финансовой системы до расчёта одного решения</h2></div>
+          <p>Маршрут зависит от состояния данных и вопроса собственника. Если работающая система уже есть, переделывать её ради новой системы не будем — сначала проверим, можно ли использовать существующий учёт.</p>
+        </header>
+        <article class="format-primary">
+          <div><p class="card-label">Основная услуга</p><h3>Автоматизированная финансовая система для решений собственника</h3><p>Разработка и внедрение автоматизированного управленческого учёта.</p><p class="format-price">от <strong>150 000 ₽</strong></p><a class="text-link format-choice" href="#contact" data-open-qualifier data-cooperation aria-label="Выбрать формат: Автоматизированная финансовая система для решений собственника">Выбрать этот формат <span aria-hidden="true">→</span></a></div>
+          <div><p class="case-caption">Нижний ориентир включает</p><ul class="included-list"><li>Согласованное количество компаний.</li><li>Согласованное количество источников.</li><li>Базовый согласованный набор финансовых отчётов.</li><li>Согласованный объём автоматизации.</li><li>Обучение одного ответственного сотрудника.</li><li>Первый рабочий цикл на фактических данных.</li><li>Один месяц сопровождения запуска и стабилизации в объёме договора.</li></ul></div>
+        </article>
+        <div class="format-alternatives">
+          <article><h3>Сопровождение финансового директора</h3><p class="format-price">от <strong>90 000 ₽</strong><span>в месяц</span></p><p>Регулярный разбор причин результата, сценарные расчёты, финансовые встречи, сопровождение решений и развитие системы.</p><p>Можно заказать без внедрения Ксенией. Перед началом проверяются качество данных, правила расчёта и пригодность существующей системы.</p><details><summary>Границы сопровождения<span class="details-mark" aria-hidden="true"></span></summary><p>Частота встреч, количество задач, сроки, каналы коммуникации и границы ответственности фиксируются в договоре.</p></details><a class="text-link format-choice" href="#contact" data-open-qualifier data-cooperation aria-label="Выбрать формат: Сопровождение финансового директора">Выбрать этот формат <span aria-hidden="true">→</span></a></article>
+          <article><h3>Финансовая модель решения</h3><p class="format-price">от <strong>45 000 ₽</strong></p><p>Отдельный расчёт для аренды, кредита, инвестиции, изменения цены, оборудования, закупки, нового проекта или другого сценария.</p><p>Видно, при каких условиях решение работает, какой ресурс потребуется и какие риски нужно учитывать.</p><a class="text-link format-choice" href="#contact" data-open-qualifier data-cooperation aria-label="Выбрать формат: Финансовая модель решения">Выбрать этот формат <span aria-hidden="true">→</span></a></article>
+          <article><h3>Углублённый аудит финансовой системы</h3><p class="format-price individual-price"><strong>Индивидуально</strong><span>после диагностической карты</span></p><p>Проверка данных, правил, процессов, отчётности, расхождений и возможных границ автоматизации.</p><a class="text-link format-choice" href="#contact" data-open-qualifier data-cooperation aria-label="Выбрать формат: Углублённый аудит финансовой системы">Выбрать этот формат <span aria-hidden="true">→</span></a></article>
         </div>
+        <div class="formats-footer"><p class="note">Итоговые состав, срок, стоимость и ответственность сторон фиксируются в договоре.</p><a class="button" href="#contact" data-open-qualifier>Разобрать мою ситуацию</a></div>
+      </div>
+    </section>
 
-        <p class="diagnostic-note">Диагностическая карта создаётся по итогам беседы без проверки финансовых данных. Это предварительная картина, а не аудит или готовый план внедрения.</p>
+    <section class="section ruled-section" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="about-overview">
+          <div class="about-intro"><h2 id="about-title">Финансовый смысл, налоги и работающая система</h2><p class="section-intro">Я финансовый директор на аутсорсе. Соединяю финансовый анализ, налоговые последствия и техническую реализацию: определяю, какой ответ нужен собственнику, задаю правила управленческого учёта, автоматизирую повторяемую обработку и сопровождаю решение по фактическому результату.</p><p>Основной практический опыт — торговые и производственные компании, включая маркетплейсы.</p></div>
+          <div class="about-media-row">
+            <figure class="about-video">
+              <video controls playsinline preload="metadata" width="1280" height="720" aria-label="Видео о подходе Ксении Богатовой">
+                <source src="assets/video/ksenia-about.mp4" type="video/mp4">
+                Ваш браузер не поддерживает видео. <a href="assets/video/ksenia-about.mp4">Открыть видео</a>.
+              </video>
+            </figure>
+            <dl class="about-facts"><div><dt>19 лет</dt><dd>в финансах</dd></div><div><dt>8 лет</dt><dd>в Палате налоговых консультантов</dd></div><div><dt>4 года</dt><dd>профессиональной разработки решений в 1С</dd></div></dl>
+          </div>
+        </div>
+        <div class="working-terms"><p class="kicker">Формат сотрудничества</p><p><span>Работа полностью удалённо по России.</span><span>По договору.</span><span>NDA — всегда.</span></p></div>
+        <div class="competencies">
+          <article><p class="card-label">01</p><h3>Финансовая</h3><p>Прибыль, движение денег, запасы, расчёты, обязательства, сценарии и план-факт.</p></article>
+          <article><p class="card-label">02</p><h3>Налоговая</h3><p>Оценка налоговых последствий решений и рисков.</p></article>
+          <article><p class="card-label">03</p><h3>Техническая</h3><p>Решения в 1С, Excel, Power Query и других согласованных инструментах в пределах собственной компетенции.</p></article>
+        </div>
+        <details class="responsibility-details">
+          <summary>Что входит в мою зону ответственности<span class="details-mark" aria-hidden="true"></span></summary>
+          <div class="details-content"><p>Я не веду бухгалтерский и налоговый учёт вместо бухгалтера, не предлагаю незаконные и высокорискованные схемы налоговой оптимизации, не автоматизирую процесс до определения правил и проверки исходной информации, не работаю без согласованного доступа к данным и не обещаю результат без участия собственника.</p><p>Постоянный ввод первичных данных выполняет финансовый менеджер со стороны клиента либо эта функция согласуется отдельно.</p><p>Я не беру чисто техническое программирование, не связанное с финансовой управленческой задачей. Могу разрабатывать управленческие отчёты, ОПиУ, управленческий баланс и финансовую аналитику на данных CRM, если заранее определены финансовый смысл и правила расчёта.</p><p>Если проект требует сложной ERP-разработки, серверной инфраструктуры или отдельной интеграционной команды, я формулирую финансовые требования и проверяю результат, но не подменяю других специалистов.</p></div>
+        </details>
+      </div>
+    </section>
 
+    <section class="section dark-section contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <header class="section-heading"><div><p class="kicker">Первый шаг</p><h2 id="contact-title">Начнём с вопроса, на который вам сейчас не хватает ответа</h2></div><p>Сначала разберём именно вашу ситуацию. После первой встречи я подготовлю диагностическую карту, а затем представлю её на отдельной встрече и покажу возможные маршруты дальнейшей работы.</p></header>
+        <ol class="contact-steps">
+          <li><span class="step-number">01</span><h3>Сообщение</h3><p>Вы пишете в MAX или по электронной почте и коротко описываете бизнес и вопрос.</p></li>
+          <li><span class="step-number">02</span><h3>Первая встреча</h3><p>До 60 минут, онлайн, бесплатно. Мы разбираем ситуацию без проверки конкретных финансовых цифр.</p></li>
+          <li><span class="step-number">03</span><h3>Диагностическая карта</h3><p>В течение одного рабочего дня я готовлю отдельный документ объёмом 4–6 страниц.</p></li>
+          <li><span class="step-number">04</span><h3>Вторая встреча</h3><p>Я представляю карту, поясняю, что видно уже сейчас, что требует проверки и какой следующий маршрут возможен: аудит, внедрение, сопровождение или финансовая модель.</p></li>
+        </ol>
+        <p class="diagnostic-note">Диагностическая карта составляется по итогам беседы без проверки финансовых данных. Она отражает предварительную картину и не является аудитом, окончательным финансовым заключением или готовым планом внедрения.</p>
         <div class="faq-layout">
-          <header>
-            <p class="section-kicker">Короткие ответы</p>
-            <h2>Частые вопросы</h2>
-          </header>
-
+          <div><p class="kicker">Перед началом</p><h3 class="faq-title">Вопросы<br> и ответы</h3></div>
           <div class="faq-list">
-            <details data-faq-id="accountant">
-              <summary>Вы заменяете бухгалтера?<span class="details-mark" aria-hidden="true"></span></summary>
-              <p>Нет. Бухгалтер отвечает за бухгалтерский и налоговый учёт. Я выстраиваю управленческую финансовую систему и сопровождаю решения собственника.</p>
-            </details>
-            <details data-faq-id="existing-system">
-              <summary>Можно работать с уже существующей системой?<span class="details-mark" aria-hidden="true"></span></summary>
-              <p>Да. Сначала проверяю качество данных, правила расчёта, устойчивость процесса и пригодность отчётности для решений.</p>
-            </details>
-            <details data-faq-id="change-1c">
-              <summary>Обязательно менять 1С?<span class="details-mark" aria-hidden="true"></span></summary>
-              <p>Нет. Сначала оцениваю, что уже есть и можно ли решить задачу текущими инструментами.</p>
-            </details>
-            <details data-faq-id="manual-work">
-              <summary>Полностью ли исчезнет ручная работа?<span class="details-mark" aria-hidden="true"></span></summary>
-              <p>Нет. Исключения, редкие операции, проверка расхождений и профессиональные выводы остаются под контролем человека.</p>
-            </details>
-            <details data-faq-id="profit-guarantee">
-              <summary>Вы гарантируете рост прибыли?<span class="details-mark" aria-hidden="true"></span></summary>
-              <p>Нет. Финансовый результат зависит от решений собственника, команды и внешней среды.</p>
-            </details>
-            <details data-faq-id="confidentiality">
-              <summary>Как обеспечивается конфиденциальность?<span class="details-mark" aria-hidden="true"></span></summary>
-              <p>Доступы, способы передачи информации и ответственность сторон закрепляются в договоре. При необходимости заключается NDA.</p>
-            </details>
+            <details><summary>Вы заменяете бухгалтера?<span class="details-mark" aria-hidden="true"></span></summary><p>Нет. Бухгалтер отвечает за бухгалтерский и налоговый учёт. Я строю управленческую систему для решений собственника и использую данные обязательного учёта там, где они подходят для этой задачи.</p></details>
+            <details><summary>Нужно ли менять 1С и привычные отчёты?<span class="details-mark" aria-hidden="true"></span></summary><p>Не обязательно. Сначала я проверяю, можно ли решить задачу существующими инструментами. Изменения предлагаются там, где они нужны для качества данных и регулярной работы.</p></details>
+            <details><summary>Можно заказать сопровождение без вашего внедрения?<span class="details-mark" aria-hidden="true"></span></summary><p>Да. Перед началом работы я проверяю качество данных, правила расчёта и пригодность существующей системы для управленческих решений.</p></details>
+            <details><summary>Останутся ли ручные операции?<span class="details-mark" aria-hidden="true"></span></summary><p>Да. Автоматизируется экономически оправданная повторяемая часть. Редкие операции, исключения, пояснения команды и профессиональные выводы остаются под контролем человека.</p></details>
+            <details><summary>Кто вводит первичные данные?<span class="details-mark" aria-hidden="true"></span></summary><p>Постоянный ввод выполняет финансовый менеджер со стороны клиента либо эта функция согласуется отдельно. Моя основная зона ответственности — финансовые правила, контроль данных, автоматизация, анализ и работа с решениями собственника.</p></details>
+            <details><summary>Чем диагностическая карта отличается от аудита?<span class="details-mark" aria-hidden="true"></span></summary><p>Диагностическая карта создаётся по итогам беседы и показывает верхнеуровневую предварительную картину. Углублённый аудит включает проверку конкретных данных, правил, отчётов и процессов.</p></details>
+            <details><summary>Можно заказать только финансовую модель?<span class="details-mark" aria-hidden="true"></span></summary><p>Да, если для расчёта есть достаточно надёжные исходные данные. Если модель зависит от непроверенных данных действующего бизнеса, сначала нужно определить, что требуется проверить.</p></details>
+            <details><summary>Вы гарантируете рост прибыли?<span class="details-mark" aria-hidden="true"></span></summary><p>Я отвечаю за качество своей методологии, расчётов, автоматизации и сопровождения. Результат зависит также от действий собственника, команды и внешних условий.</p></details>
+            <details><summary>Как обеспечивается конфиденциальность?<span class="details-mark" aria-hidden="true"></span></summary><p>Доступы, способы передачи информации и ответственность сторон закрепляются в договоре. NDA заключается всегда. Клиентские материалы публикуются только с разрешения и в согласованном обезличенном виде.</p></details>
+            <details><summary>Работаете ли вы очно?<span class="details-mark" aria-hidden="true"></span></summary><p>Нет. Все встречи и проекты проходят удалённо. Работаю с компаниями по всей России.</p></details>
           </div>
         </div>
-
-        <div class="final-cta">
-          <div>
-            <p class="section-kicker">Можно начать без файлов</p>
-            <h2>Разберём финансовый вопрос и определим следующий шаг</h2>
-            <p>Коротко опишите бизнес, данные и решение. Если задача соответствует формату, договоримся о бесплатной встрече.</p>
-          </div>
-          <div class="final-cta-actions">
-            <a class="button cta-link" href="#contact" data-open-qualifier data-cta-location="final">Разобрать финансовую ситуацию</a>
-            <a class="button contact-link" data-direct-max hidden target="_blank" rel="noopener noreferrer">Открыть MAX</a>
-            <a class="text-button confirmation-link contact-link" data-direct-email hidden>Написать по e-mail</a>
-            <p class="contact-unavailable" data-contact-unavailable data-dev-only>Рабочие MAX и e-mail ещё не добавлены в development-конфигурацию.</p>
-          </div>
-          <noscript>
-            <p class="noscript-note">JavaScript отключён. Прямые контакты станут доступны после подстановки подтверждённых MAX и e-mail.</p>
-          </noscript>
+        <div class="contact-actions">
+          <a class="button button-light" href="#contact" data-open-qualifier>Разобрать мою ситуацию <span aria-hidden="true">↗</span></a>
+          <div><a class="button button-light" data-contact-max hidden target="_blank" rel="noopener">Написать в MAX <span aria-hidden="true">↗</span></a><p class="contact-placeholder" data-max-placeholder>Ссылка на MAX будет добавлена перед публикацией</p></div>
+          <div><a class="text-link" data-contact-email hidden>Написать по e-mail <span aria-hidden="true">↗</span></a><p class="contact-placeholder" data-email-placeholder>Рабочий e-mail будет добавлен перед публикацией</p></div>
         </div>
       </div>
     </section>
@@ -381,83 +312,111 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p><strong>Ксения Богатова</strong> · финансовый директор на аутсорсе</p>
-      <p>Удалённо по России</p>
+      <div class="footer-main"><div><p class="footer-brand">Ксения Богатова</p><p>Финансовый директор на аутсорсе</p></div><a class="text-link" href="#top">Наверх <span aria-hidden="true">↑</span></a></div>
+      <div class="footer-legal"><p data-legal="legalName">ИП [полное имя]</p><p>ИНН <span data-legal="inn">[будет добавлен]</span></p><p>ОГРНИП <span data-legal="ogrnip">[будет добавлен]</span></p><p>Рабочий e-mail <span data-footer-email>[будет добавлен]</span></p><p>MAX <span data-footer-max>[будет добавлен]</span></p></div>
+      <nav class="footer-documents" aria-label="Документы о персональных данных">
+        <a class="text-link privacy-link" href="consent.html">Согласие на обработку персональных данных</a>
+        <a class="text-link privacy-link" href="privacy.html">Политика обработки персональных данных</a>
+      </nav>
+      <p class="footer-disclaimer">Информация на сайте носит общий информационный характер. Состав работ, выводы и рекомендации определяются после изучения конкретной ситуации.</p>
     </div>
   </footer>
-
   <dialog class="qualifier-dialog" id="qualifier-dialog" aria-labelledby="qualifier-title" aria-describedby="qualifier-description qualifier-warning">
     <div class="qualifier-dialog-inner">
-      <button class="dialog-close" type="button" data-close-qualifier aria-label="Закрыть мини-бриф">
+      <button class="dialog-close" type="button" data-close-qualifier aria-label="Закрыть форму">
         <span aria-hidden="true">×</span>
       </button>
 
-      <div data-qualifier-form-view>
-        <p class="dialog-kicker">Первый шаг</p>
-        <h2 id="qualifier-title" tabindex="-1">Коротко опишите бизнес и финансовый вопрос</h2>
-        <p id="qualifier-description">Для первого шага не нужны финансовые файлы и доступы. Достаточно общего описания ситуации.</p>
-
-        <form class="qualifier-form" id="qualifier-form" novalidate>
-          <div class="form-field">
-            <label for="business-model">Сфера и модель бизнеса <span class="required-mark">обязательное поле</span></label>
-            <textarea id="business-model" name="business" maxlength="250" rows="3" required placeholder="Например: производство и оптовая торговля, продажи через маркетплейсы" aria-describedby="business-hint business-error"></textarea>
-            <p class="field-hint" id="business-hint">До 250 символов.</p>
-            <p class="field-error" id="business-error" hidden>Опишите сферу и модель бизнеса.</p>
+      <form class="qualifier-form" id="qualifier-form" novalidate method="dialog">
+        <div class="qualifier-view" data-qualifier-form-view>
+          <div class="qualifier-heading">
+            <h2 id="qualifier-title" tabindex="-1">Разбор финансовой ситуации</h2>
+            <p id="qualifier-description">Достаточно двух коротких ответов. Сначала вы увидите готовый текст — ничего не отправляется автоматически.</p>
+            <p class="selected-topic" data-selected-topic hidden></p>
+            <p class="question-progress" data-question-progress hidden aria-live="polite"></p>
           </div>
 
-          <div class="form-field">
-            <label for="financial-question">Какой вопрос или решение нужно разобрать <span class="required-mark">обязательное поле</span></label>
-            <textarea id="financial-question" name="question" maxlength="700" rows="4" required placeholder="Например: почему при росте продаж не увеличиваются свободные деньги" aria-describedby="question-hint question-error"></textarea>
-            <p class="field-hint" id="question-hint">До 700 символов.</p>
-            <p class="field-error" id="question-error" hidden>Сформулируйте вопрос или решение, которое нужно разобрать.</p>
+          <div class="qualifier-fields">
+            <div class="form-field" data-business-field>
+              <label for="business-model">Чем занимается ваш бизнес? <span class="required-mark">обязательно</span></label>
+              <textarea id="business-model" name="business" maxlength="250" rows="2" required placeholder="Производство мебели" aria-describedby="business-hint business-error"></textarea>
+              <p class="field-hint" id="business-hint">До 250 символов.</p>
+              <p class="field-error" id="business-error" hidden>Опишите сферу и модель бизнеса.</p>
+            </div>
+
+            <div class="form-field" data-question-field>
+              <label for="financial-question">Что хотите понять или изменить? <span class="required-mark">обязательно</span></label>
+              <textarea id="financial-question" name="question" maxlength="700" rows="3" required placeholder="Например: стоит ли покупать оборудование?" aria-describedby="question-hint question-error"></textarea>
+              <p class="field-hint" id="question-hint">До 700 символов.</p>
+              <p class="field-error" id="question-error" hidden>Напишите, что хотите понять или изменить.</p>
+            </div>
           </div>
 
-          <div class="form-field">
-            <label for="data-sources">Где сейчас находятся данные <span class="required-mark">обязательное поле</span></label>
-            <textarea id="data-sources" name="dataSources" maxlength="300" rows="3" required placeholder="Например: 1С, банки, Excel, CRM, кабинеты торговых площадок" aria-describedby="data-sources-hint data-sources-error"></textarea>
-            <p class="field-hint" id="data-sources-hint">До 300 символов.</p>
-            <p class="field-error" id="data-sources-error" hidden>Укажите, где сейчас находятся данные.</p>
+          <div class="qualifier-footer">
+            <div class="brief-options">
+              <button class="text-button extras-toggle" type="button" data-open-extras>Добавить детали <span>необязательно</span></button>
+              <p class="qualifier-warning" id="qualifier-warning">Не указывайте пароли, доступы и персональные данные сотрудников. Финансовые файлы сейчас не нужны.</p>
+            </div>
+            <p class="form-status" data-form-status aria-live="polite"></p>
+            <div class="dialog-actions">
+              <button class="button" type="button" data-next-question hidden>Далее <span aria-hidden="true">→</span></button>
+              <button class="button" type="submit" data-prepare-message>Подготовить сообщение</button>
+              <button class="text-button" type="button" data-previous-question hidden>Назад</button>
+              <button class="text-button" type="button" data-close-qualifier>Отменить</button>
+            </div>
           </div>
+        </div>
 
-          <div class="form-field">
-            <label for="business-scale">Количество компаний, направлений или каналов <span class="optional-mark">необязательно</span></label>
-            <input id="business-scale" name="scale" type="text" maxlength="180">
+        <div class="qualifier-view" data-qualifier-extras-view hidden>
+          <div class="qualifier-heading">
+            <h2 id="qualifier-extras-title" tabindex="-1">Детали ситуации</h2>
+            <p id="qualifier-extras-description">Необязательно. Добавьте то, что уже знаете.</p>
           </div>
+          <div class="extras-fields">
+            <div class="form-field">
+              <label for="data-sources">Где сейчас ведёте учёт?</label>
+              <textarea id="data-sources" name="dataSources" maxlength="300" rows="2" placeholder="1С, таблицы, отчёты площадок — или пока не знаю" aria-describedby="data-sources-hint"></textarea>
+              <p class="field-hint" id="data-sources-hint">До 300 символов.</p>
+            </div>
 
-          <div class="form-field">
-            <label for="decision-deadline">Когда требуется принять решение <span class="optional-mark">необязательно</span></label>
-            <input id="decision-deadline" name="deadline" type="text" maxlength="120" placeholder="Например: в течение месяца">
+            <div class="form-field">
+              <label for="business-scale">Количество компаний, направлений или каналов</label>
+              <input id="business-scale" name="scale" type="text" maxlength="180">
+            </div>
+
+            <div class="form-field">
+              <label for="decision-deadline">Когда требуется принять решение</label>
+              <input id="decision-deadline" name="deadline" type="text" maxlength="120" placeholder="Например: в течение месяца">
+            </div>
           </div>
-
-          <p class="qualifier-warning" id="qualifier-warning">Не указывайте пароли, реквизиты доступа, персональные данные сотрудников и не прикладывайте финансовые файлы. Для первого шага достаточно общего описания.</p>
-          <p class="form-status" data-form-status aria-live="polite"></p>
-
           <div class="dialog-actions">
-            <button class="button" type="submit">Продолжить в MAX</button>
-            <button class="text-button" type="button" data-close-qualifier>Отменить</button>
+            <button class="button" type="button" data-save-extras>Готово</button>
+            <span class="extras-note">Детали добавятся к обращению.</span>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
 
-      <div class="qualifier-confirmation" data-qualifier-confirmation hidden aria-live="polite">
-        <p class="dialog-kicker">Сообщение готово</p>
-        <h2 id="qualifier-confirmation-title" tabindex="-1">Проверьте подготовленное обращение</h2>
-        <p data-copy-status></p>
+      <div class="qualifier-view qualifier-confirmation" data-qualifier-confirmation hidden>
+        <div class="qualifier-heading">
+          <h2 id="qualifier-confirmation-title" tabindex="-1">Проверьте подготовленное обращение</h2>
+          <p id="copy-status" data-copy-status role="status"></p>
+        </div>
 
         <div class="form-field">
           <label for="message-preview">Подготовленное сообщение</label>
           <textarea id="message-preview" data-message-preview rows="11" readonly></textarea>
         </div>
 
-        <p class="development-warning" data-config-warning data-dev-only hidden>Внешний переход заблокирован: подтверждённые MAX и e-mail не добавлены в конфигурацию.</p>
-
-        <div class="confirmation-actions">
-          <a class="button" data-open-max hidden target="_blank" rel="noopener noreferrer">Открыть MAX</a>
-          <button class="button" type="button" data-max-unavailable disabled>Открыть MAX</button>
-          <button class="button button-secondary" type="button" data-copy-again>Скопировать ещё раз</button>
-          <a class="text-button confirmation-link" data-send-email hidden>Отправить по e-mail</a>
-          <button class="text-button" type="button" data-email-unavailable disabled>Отправить по e-mail</button>
-          <button class="text-button" type="button" data-edit-qualifier>Изменить ответы</button>
+        <div class="qualifier-footer">
+          <p class="development-warning" data-config-warning hidden>MAX и e-mail пока не подключены. Подготовленное сообщение можно скопировать.</p>
+          <div class="confirmation-actions">
+            <a class="button" data-open-max hidden target="_blank" rel="noopener noreferrer">Открыть MAX</a>
+            <button class="button" type="button" data-max-unavailable disabled>Открыть MAX</button>
+            <button class="button button-secondary" type="button" data-copy-again>Скопировать</button>
+            <a class="text-button confirmation-link" data-send-email hidden>Отправить по e-mail</a>
+            <button class="text-button" type="button" data-email-unavailable disabled>Отправить по e-mail</button>
+            <button class="text-button" type="button" data-edit-qualifier>Изменить ответы</button>
+          </div>
         </div>
       </div>
     </div>
